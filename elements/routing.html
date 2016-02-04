@@ -1,0 +1,214 @@
+<!--@license Copyright (c) 2015 The Polymer Project Authors. All rights reserved. This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as part of the polymer project is also subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt-->
+
+<script src="../bower_components/page/page.js"></script>
+<script>
+	window.addEventListener('WebComponentsReady', function() {
+
+		// We use Page.js for routing. This is a Micro
+		// client-side router inspired by the Express router
+		// More info: https://visionmedia.github.io/page.js/
+
+		// Middleware
+		function scrollToTop(ctx, next) {
+			app.scrollPageToTop();
+			app.resetCurrentPositionReset();
+			app.resetEventAdd();
+			app.resetEventLoad();
+
+			var visiblePaperDialog = jQuery('paper-dialog:visible');
+			if(visiblePaperDialog.length > 0)
+				window[visiblePaperDialog.attr('id')].close();
+
+			next();
+		}
+
+		// Routes
+		page('/', scrollToTop, function() {
+			if (app.isNotLoggedIn) {
+				app.BaasBox_fetchCurrentUser();
+			} else {
+				if (!app.elop_events_loaded) {
+					app.events_load();
+				}
+				app.route = 'events';
+			}
+		});
+
+		page('/about', scrollToTop, function() {
+			app.route = 'about';
+		});
+
+		page('/baasbox', scrollToTop, function() {
+			app.route = 'baasbox';
+		});
+
+		page('/change_Password_Action', scrollToTop, function() {
+			if (app.change_password_paper_input != app.change_verify_password_paper_input || app.change_password_paper_input == '' || app.change_verify_password_paper_input == '' || app.verify_password_paper_input == '') {
+				if (!(app.change_password_paper_input == '' && app.change_verify_password_paper_input == '' && app.verify_password_paper_input == ''))
+					alert("Verify old and new passwords");
+				app.verify_password_paper_input = '';
+				app.change_password_paper_input = '';
+				app.change_verify_password_paper_input = '';
+
+				app.route = 'settings';
+			} else {
+				app.route = 'loading';
+				BaasBox.changePassword(app.verify_password_paper_input, app.change_password_paper_input).done(function(res) {
+					app.route = 'settings';
+					alert("Password changed");
+				}).fail(function(error) {
+					alert("Passwords do not match");
+					app.route = 'settings';
+				});
+				app.verify_password_paper_input = '';
+				app.change_password_paper_input = '';
+				app.change_verify_password_paper_input = '';
+			}
+		});
+
+		page('/contact', scrollToTop, function() {
+			app.route = 'contact';
+		});
+
+		page('/event/:eventid', scrollToTop, function(data) {
+			app.route = 'event';
+			app.params = data.params;
+			app.event_load();
+		});
+
+		page('/event_add', scrollToTop, function() {
+			app.route = 'event_add';
+			app.event_length = 0;
+			document.getElementById("event-length").innerHTML = '';
+			app.getCurrentPositionForEvent();
+		});
+
+		page('/events', scrollToTop, function() {
+			if (!app.elop_events_loaded) {
+				app.events_load();
+			}
+			app.route = 'events';
+		});
+
+		page('/logout', scrollToTop, function() {
+			app.route = 'logingout';
+			document.getElementById("paperDrawerPanel").style.display = 'none';
+			document.getElementById("welcome_container").style.display = 'inline';
+
+			document.getElementById("event_list_area").innerHTML = '<paper-card heading="Loading..."><div class="card-content">Please wait for events to load.</div></paper-card>'
+			app.elop_events_loaded = false;
+
+			BaasBox.logout().done(function (res) {
+				app.isNotLoggedIn = true;
+				app.isNotLoggedInWithUser = true;
+				app.BaasBox_fetchCurrentUser();
+				app.route = 'signon';
+			}).fail(function (error) {
+				app.isNotLoggedIn = true;
+				app.isNotLoggedInWithUser = true;
+				app.BaasBox_fetchCurrentUser();
+				app.route = 'signon';
+			});
+			app.isNotLoggedIn = true;
+			app.isNotLoggedInWithUser = true;
+			app.route = 'signon';
+		});
+
+		page('/map', scrollToTop, function() {
+			app.route = 'map';
+		});
+
+		page('/more', scrollToTop, function() {
+			app.route = 'more';
+		});
+
+		page('/settings', scrollToTop, function() {
+			app.route = 'settings';
+		});
+
+		page('/signon', scrollToTop, function() {
+			app.route = 'signon';
+		});
+
+		page('/signon_Action', scrollToTop, function() {
+			app.route = 'loading';
+
+			BaasBox.login(app.signon_username_paper_input, app.signon_password_paper_input).done(function (user) {
+				app.isNotLoggedIn = false;
+				app.isNotLoggedInWithUser = false;
+				app.signon_username_paper_input = '';
+				app.signon_password_paper_input = '';
+				if (!app.elop_events_loaded) {
+					app.events_load();
+				}
+				app.route = 'events';
+				app.BaasBox_fetchCurrentUser();
+			}).fail(function (err) {
+				console.log("error ", err);
+				app.isNotLoggedIn = true;
+				app.isNotLoggedInWithUser = true;
+				app.signon_username_paper_input = '';
+				app.signon_password_paper_input = '';
+				app.route = 'signon';
+			});
+		});
+
+		page('/signon_withoutuser', scrollToTop, function() {
+			app.route = 'signon_withoutuser';
+		});
+
+		page('/signup', scrollToTop, function() {
+			app.route = 'signup';
+		});
+
+		page('/signup_Action', scrollToTop, function() {
+			app.route = 'loading';
+			if (app.signup_password_paper_input != app.signup_verify_password_paper_input || app.signup_password_paper_input == '' || app.signup_verify_password_paper_input == '') {
+				app.route = 'signon';
+			} else {
+				BaasBox.signup(app.signup_username_paper_input, app.signup_password_paper_input).done(function (res) {
+					app.signup_password_paper_input = ''; // Remove Passwords
+					app.signup_verify_password_paper_input = '';
+					app.isNotLoggedIn = false;
+					app.isNotLoggedInWithUser = false;
+					if (!app.elop_events_loaded) {
+						app.events_load();
+					}
+					app.BaasBox_fetchCurrentUser();
+					app.route = 'events';
+				}).fail(function (error) {
+					app.signup_password_paper_input = ''; // Remove Passwords
+					app.signup_verify_password_paper_input = '';
+					app.isNotLoggedIn = true;
+					app.isNotLoggedInWithUser = true;
+					app.route = 'signon';
+				});
+			}
+		});
+
+		page('/signon_Action_Fast', scrollToTop, function() {
+			app.route = 'loading';
+			if (!app.elop_events_loaded) {
+				app.events_load();
+			}
+			app.route = 'events';
+			app.isNotLoggedIn = false;
+			app.isNotLoggedInWithUser = true;
+		});
+
+		page('/users', scrollToTop, function() {
+			app.route = 'users';
+		});
+
+		page('/users/:name', scrollToTop, function(data) {
+			app.route = 'user-info';
+			app.params = data.params;
+		});
+
+		// add #! before urls
+		page({
+			hashbang: true
+		});
+
+	});
+</script>

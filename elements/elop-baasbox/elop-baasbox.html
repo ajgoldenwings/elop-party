@@ -1,0 +1,154 @@
+<!--@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="elop-baasbox">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+			}
+		</style>
+		<paper-material elevation="1">
+			<h2 class="page-title">Elop Party, the flow</h2>
+			<p>This is features that the user may do in the future.</p>
+			<p>Check if current user exists</p>
+			<paper-button raisedButton id="fetchCurrentUser-button" class="colored" label="Click" link="">Fetch Current User</paper-button>
+
+		</paper-material>
+
+		<paper-material elevation="1">
+
+			<p>Go to Login/Sign Up</p>
+
+			<p>Register</p>
+			<paper-input placeholder="Username" required invalid id="register-username-paper-input" error="This Field is required" class="invalid"></paper-input>
+			<paper-input type="password" placeholder="Password" required invalid id="register-password-paper-input" class="invalid"></paper-input>
+			<paper-input type="password" placeholder="Confirm Password" required invalid id="register-password-confirm-paper-input" class="invalid"></paper-input>
+			<paper-button raisedButton id="register-button" class="colored" label="Click" link="">Signup</paper-button>
+
+			<paper-button raisedButton id="signupWithParams-button" class="colored" label="Click" link="">Signup with Params</paper-button>
+
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Have ability to logoff</p>
+			<paper-button raisedButton id="logout-button" class="colored" label="Click" link="">Log off</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Collection Functionalities</p>
+			<paper-button raisedButton id="createCollection-button" class="colored" label="Click" link="">Create a Collection</paper-button>
+			<p>Load</p>
+			<paper-button raisedButton id="loadCollection-button" class="colored" label="Click" link="">Load a Collection</paper-button>
+			<paper-button raisedButton id="loadCollectionWithParams-button" class="colored" label="Click" link="">Load a Collection with Params</paper-button>
+			<p>Delete</p>
+			<paper-button raisedButton id="deleteCollection-button" class="colored" label="Click" link="">Delete a Collection</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Object Functionality</p>
+			<paper-button raisedButton id="save-button" class="colored" label="Click" link="">Save</paper-button>
+			<paper-button raisedButton id="loadObject-button" class="colored" label="Click" link="">Load a Object</paper-button>
+			<paper-button raisedButton id="fetchObjectsCount-button" class="colored" label="Click" link="">Fetch Object Count</paper-button>
+			<paper-button raisedButton id="update-button" class="colored" label="Click" link="">Update Field</paper-button>
+			<paper-button raisedButton id="delete-button" class="colored" label="Click" link="">Delete Object</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Object Permissions</p>
+			<paper-button raisedButton id="grantUserAccessToObject-button" class="colored" label="Click" link="">Grant Access to a User</paper-button>
+			<paper-button raisedButton id="revokeUserAccessToObject-button" class="colored" label="Click" link="">Revoke Access to a User</paper-button>
+			<paper-button raisedButton id="grantRoleAccessToObject-button" class="colored" label="Click" link="">Grant Access to a Role</paper-button>
+			<paper-button raisedButton id="revokeRoleAccessToObject-button" class="colored" label="Click" link="">Revoke Access to a Role</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>JSON</p>
+			<paper-button raisedButton id="loadJSONAsset-button" class="colored" label="Click" link="">Load a JSON Asset</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Images</p>
+			<paper-button raisedButton id="getImageURI-button" class="colored" label="Click" link="">Get Image's URI</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Profiles</p>
+			<paper-button raisedButton id="fetchUser-button" class="colored" label="Click" link="">Fetch an User Profile</paper-button>
+
+			<paper-button raisedButton id="fetchUsers-button" class="colored" label="Click" link="">Fetch Users</paper-button>
+
+			<paper-button raisedButton id="fetchUsersWithParams-button" class="colored" label="Click" link="">Fetch User List with Params</paper-button>
+
+			<paper-button raisedButton id="updateUserProfile-button" class="colored" label="Click" link="">Up+date User Profile</paper-button>
+
+			<paper-button raisedButton id="changePassword-button" class="colored" label="Click" link="">Change Password</paper-button>
+
+			<paper-button raisedButton id="resetPassword-button" class="colored" label="Click" link="">Reset Password</paper-button>
+
+			<paper-button raisedButton id="followUser-button" class="colored" label="Click" link="">Follow User</paper-button>
+
+			<paper-button raisedButton id="unfollowUser-button" class="colored" label="Click" link="">Unfollow User</paper-button>
+
+			<paper-button raisedButton id="fetchFollowers-button" class="colored" label="Click" link="">Fetch Followers</paper-button>
+
+			<paper-button raisedButton id="fetchFollowing-button" class="colored" label="Click" link="">Fetch Following</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Notifications</p>
+			<paper-button raisedButton id="sendPush-button" class="colored" label="Click" link="">Send Push</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Files</p>
+			<paper-button raisedButton id="fetchFile-button" class="colored" label="Click" link="">Fetch File</paper-button>
+			<paper-button raisedButton id="fetchFileDetails-button" class="colored" label="Click" link="">Fetch File Details</paper-button>
+			<paper-button raisedButton id="deleteFile-button" class="colored" label="Click" link="">Delete File</paper-button>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>Forms</p>
+			<paper-button raisedButton id="uploadForm-button" class="colored" label="Click" link="">Upload Form</paper-button>
+			<form id="uploadForm">
+				<input type="file" name="upload" /><br/>
+			</form>
+			<button id="sub">Upload</button><br/>
+		</paper-material>
+
+		<paper-material elevation="1">
+			<p>File Permissions</p>
+			<paper-button raisedButton id="grantUserAccessToFile-button" class="colored" label="Click" link="">Grant User Access to File</paper-button>
+			<paper-button raisedButton id="revokeUserAccessToFile-button" class="colored" label="Click" link="">Revoke User Access to File</paper-button>
+			<paper-button raisedButton id="grantRoleAccessToFile-button" class="colored" label="Click" link="">Grant Role Access to File</paper-button>
+			<paper-button raisedButton id="revokeRoleAccessToFile-button" class="colored" label="Click" link="">Revoke Role Access to File</paper-button>
+		</paper-material>
+	</template>
+
+	<script>
+		(function () {
+			'use strict';
+
+			Polymer({
+				is: 'elop-baasbox',
+				properties: {
+					items: {
+						type: Array,
+						notify: true,
+					}
+				},
+				ready: function() {
+
+				}
+			});
+		})();
+	</script>
+
+</dom-module>

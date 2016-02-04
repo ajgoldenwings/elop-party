@@ -1,0 +1,72 @@
+
+<!doctype html>
+
+<dom-module id="elop-toolbar">
+
+<template>
+	<style>
+		paper-toolbar.tall .app-name {
+			font-size: 40px;
+			font-weight: 300;
+			/*Required for main area's paper-scroll-header-panel custom condensing transformation*/
+			-webkit-transform-origin: left center;
+			transform-origin: left center;
+		}
+
+		/*#mainToolbar .middle-container  {
+			height: 100%;
+			margin-left: 48px;
+		}
+
+		#mainToolbar:not(.tall) .middle {
+			font-size: 18px;
+			padding-bottom: 0;
+		}
+
+		#mainToolbar .bottom {
+			margin-left: 48px;
+		}*/
+
+		/* Small */
+		/*@media (max-width: 600px) {
+			paper-material {
+				--menu-container-display: none;
+				width: calc(97.33% - 32px);
+				padding-left: 16px;
+				padding-right: 16px;
+			}
+
+			paper-toolbar.tall .app-name {
+				font-size: 24px;
+				font-weight: 400;
+			}
+
+			#drawer .paper-toolbar {
+				margin-left: 16px;
+			}
+
+			#overlay {
+				min-width: 360px;
+			}
+
+			.bg {
+				background: #000;
+			}
+		}*/
+	</style>
+	<paper-toolbar id="mainToolbar">
+		<paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+		<span class="title alignleft">Elop Party</span>
+		<section onclick="clickHandler(event)" hidden={{isNotLoggedIn}}>
+			<paper-icon-button icon="more-vert" data-dialog="buttonspopup"></paper-icon-button>
+		</section>
+	</paper-toolbar>
+</template>
+
+<script>
+Polymer({
+is: 'elop-toolbar',
+});
+</script>
+
+</dom-module>

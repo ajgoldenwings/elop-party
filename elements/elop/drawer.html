@@ -1,0 +1,30 @@
+
+<!doctype html>
+
+<dom-module id="elop-drawer">
+
+<template>
+	<style>
+
+	</style>
+	<paper-toolbar id="drawerToolbar">
+		<object class="icon-menu" type="image/svg+xml" data="./images/icons/Icons-Logo.svg"></object><span class="paper-font-title">Menu</span>
+	</paper-toolbar>
+	<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+		<a data-route="home" href="/" on-click="onDataRouteClick" hidden={{isNotLoggedIn}}><iron-icon icon="home"></iron-icon><span>Events</span></a>
+		<a data-route="map" href="/map" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="maps:map"></iron-icon><span>Map</span></a>
+		<a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="settings"></iron-icon><span>Settings</span></a>
+		<a data-route="more" href="/more" on-click="onDataRouteClick"><iron-icon icon="more-horiz"></iron-icon><span>More</span></a>
+		<a data-route="signon" href="/signon" on-click="onDataRouteClick" hidden={{!isNotLoggedIn}}><iron-icon icon="supervisor-account"></iron-icon><span>Sign On</span></a>
+	</paper-menu>
+	<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]" style="position:absolute;bottom:1em;width:100%;" hidden={{isNotLoggedIn}}>
+		<a data-route="logout" href="/logout" on-click="onDataRouteClick"><iron-icon icon="supervisor-account"></iron-icon><span>Log Off</span></a>
+	</paper-menu>
+</template>
+
+<script>
+Polymer({
+is: 'elop-drawer',
+});
+</script>
+</dom-module>
