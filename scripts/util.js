@@ -5,7 +5,7 @@
 	var Utility = class Utility {
 		constructor() {console.log("!Creating Utility"); }
 		loadPages() {
-			alert("Just testing here");
+			console.log("Just testing here");
 		}
 	};
 
