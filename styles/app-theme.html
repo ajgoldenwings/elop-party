@@ -68,10 +68,6 @@ paper-scroll-header-panel {
 }
 
 paper-material {
-	border-radius: 2px;
-	height: 100%;
-	padding: 16px 0 16px 0;
-	width: calc(98.66% - 16px);
 	margin: 6px auto;
 	background: var(--color-primary-2-deep);
 }
@@ -187,7 +183,7 @@ paper-material, paper-card, .content_custom {
 	width: calc(98.66% - 16px);
 	border-radius: 2px;
 	height: 100%;
-	padding: 16px 0 16px 0;
+	padding: 16px;
 	margin: 6px auto;
 	display: block;
 }
@@ -201,7 +197,7 @@ paper-card {
 /* Small */
 @media (max-width: 600px) {
 	paper-material, paper-card, .content_custom {
-		width: calc(97.33% - 32px);
+		width: auto;
 		--menu-container-display: none;
 		/*padding-left: 16px;
 		padding-right: 16px;*/
@@ -229,7 +225,7 @@ paper-card {
 
 	paper-material {
 		--menu-container-display: none;
-		width: calc(97.33% - 32px);
+		width: auto;
 		padding-left: 16px;
 		padding-right: 16px;
 	}
