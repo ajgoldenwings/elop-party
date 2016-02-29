@@ -186,16 +186,6 @@
 			}
 		});
 
-		page('/signon_Action_Fast', scrollToTop, function() {
-			app.route = 'loading';
-			if (!app.elop_events_loaded) {
-				app.events_load();
-			}
-			app.route = 'events';
-			app.isNotLoggedIn = false;
-			app.isNotLoggedInWithUser = true;
-		});
-
 		page('/users', scrollToTop, function() {
 			app.route = 'users';
 		});

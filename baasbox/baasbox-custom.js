@@ -419,3 +419,5 @@ $("#revokeRoleAccessToFile").click(function () {
 		console.log("error ", error);
 	})
 });
+
+var baasboxCustomJS = true;
