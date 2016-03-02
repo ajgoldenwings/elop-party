@@ -9,6 +9,7 @@
 			else if(type=="event_list_event"        ){htmlString+=this.event_list_event(object)        }
 			else if(type=="event_list_gps_error"    ){htmlString+=this.event_list_gps_error(object)    }
 			else if(type=="event_list_no_connection"){htmlString+=this.event_list_no_connection(object)}
+			else if(type=="map"                     ){htmlString+=this.map(object)                     }
 			return htmlString;
 		}
 
@@ -33,7 +34,10 @@
 			return htmlString;
 		}
 		event_list_no_connection(object) {
-			var htmlString = '<paper-card heading="Events Not Found"><div class="card-content style-scope elop-events">Was not able to get the events from the connection.</div></paper-card>';
+			return '<paper-card heading="Events Not Found"><div class="card-content style-scope elop-events">Was not able to get the events from the connection.</div></paper-card>';
+		}
+		map(object) {
+			var htmlString = '<iframe style="width:'+object.width+';height:'+object.height+'" scrolling="no" src="http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=16&amp;center='+object.center+'&amp;pushpins='+object.pins+'"></iframe>';
 			return htmlString;
 		}
 	}
@@ -41,6 +45,5 @@
 	app.generator = new Generator();
 
 })(document);
-
 
 var generatorJS = true; // Used for util to check if file has been loaded, place at end

@@ -6,8 +6,7 @@
 	// Current Event
 	// if(typeof app.event_current_title==='undefined'){app.event_current_title='';}// if(typeof app.event_current_latitude==='undefined'){app.event_current_latitude='';}// if(typeof app.event_current_length==='undefined'){app.event_current_length='';}// if(typeof app.event_current_longitude==='undefined'){app.event_current_longitude='';}// if(typeof app.event_current_promoter==='undefined'){app.event_current_promoter='loading...';}// if(typeof app.event_current_time==='undefined'){app.event_current_time='loading...';}// if(typeof app.event_current_timeto==='undefined'){app.event_current_timeto='loading...';}
 
-	// if ("geolocation" in navigator) console.log('geolocation is available');
-	// else console.log('geolocation IS NOT available');
+	// if ("geolocation" in navigator) console.log('geolocation is available'); else console.log('geolocation IS NOT available');
 
 	navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
 		app.permissionStatus_geolocation = permissionStatus.state;
@@ -26,7 +25,6 @@
 
 	app.BaasBox_fetchCurrentUser = function() {
 		BaasBox.fetchCurrentUser().done(function(res) {
-			/*console.log("res ", res['data']);*/
 			app.elop_username = res['data'].user.name;
 			if (app.route == 'signon' || app.route == 'loading') {
 				if (!app.elop_events_loaded) {
@@ -40,9 +38,6 @@
 			app.route = 'signon';
 			app.isNotLoggedIn = true;
 			app.isNotLoggedInWithUser = true;
-			// console.log("error (low risk). No User Signed On", error);
-
-			/*Debugging*//*app.isNotLoggedIn = false;app.isNotLoggedInWithUser = false;app.route = 'home';*/
 		});
 	}
 	app.BaasBox_fetchCurrentUser();
@@ -68,17 +63,12 @@
 		BaasBox.save(event, "elop_events").done(function(res) {
 			BaasBox.grantRoleAccessToObject("elop_events", res.id, BaasBox.READ_PERMISSION, BaasBox.REGISTERED_ROLE).done(function(res) {
 				app.events_load();
-			}).fail(function(error) {
-				console.log("error ", error);
-			});
-		}).fail(function(error) {
-			console.log("error ", error);
-		});
+			}).fail(function(error) {console.log("error ", error)});
+		}).fail(function(error) {console.log("error ", error)});
 	};
 
 	app.event_load = function() {
-		var mapElement,date,hours,time,timeto,length_in_hours,length_text;
-		var eventID = app.params.eventid;
+		var date,hours,time,timeto,length_in_hours,length_text, eventID = app.params.eventid, map_object;
 		document.getElementById("event_map").innerHTML = 'Loading Map...';
 		BaasBox.loadObject("elop_events", eventID).done(function(res) {
 			app.event_current_title = res['data'].title;
@@ -103,43 +93,24 @@
 				app.location_latitude = startPos.coords.latitude;
 				app.location_longitude = startPos.coords.longitude;
 				app.location_status = 4;
-
-				/*Generate Map*/
-				mapElement = document.createElement("iframe");
-				mapElement.setAttribute("style", "height:400px;width:100%;");
-				mapElement.setAttribute("scrolling", "no");
-				mapElement.setAttribute("src","http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=16&center="+app.event_current_latitude+"_"+app.event_current_longitude+"&pushpins="+app.event_current_latitude+"_"+app.event_current_longitude+"~"+app.location_latitude+"_"+app.location_longitude);
+				map_object = { width: "100%", height: "400px", center: app.event_current_latitude + "_" + app.event_current_longitude, pins: app.event_current_latitude + "_" + app.event_current_longitude + "~" + app.location_latitude + "_" + app.location_longitude };
 
 				/*Add map to page*/
-				document.getElementById("event_map").innerHTML = '';
-				document.getElementById("event_map").appendChild(mapElement);
+				document.getElementById("event_map").innerHTML = app.generator.generateHtml("map", map_object);
 			};
 			var geoError = function(error) {
 				app.location_status = error.code;
-				mapElement.setAttribute("src","http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=16&center="+app.event_current_latitude+"_"+app.event_current_longitude+"&pushpins="+app.event_current_latitude+"_"+app.event_current_longitude);
-
-				/*Add map to page*/
-				document.getElementById("event_map").innerHTML = '';
-				document.getElementById("event_map").appendChild(mapElement);
+				document.getElementById("event_map").innerHTML = 'Failed Loading Map.';
 			};
 			navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 
 		}).fail(function(error) {
 			document.getElementById("event_map").innerHTML = 'Failed Loading Map.';
-			console.log("error ", error);
 		});
 	}
 
 	app.events_load = function() {
-		var event_list_length;
-		var eventElement, eventElement_content;
-		var eventsHTML = '';
-		var date = '';
-		var hours = 0;
-		var time = '';
-		var timeto = '';
-		var length_in_hours = 0, length_text = '';
-		var currentdate = new Date();
+		var event_list_length, eventsHTML = '', date = '', hours = 0, time = '', timeto = '', length_in_hours = 0, length_text = '', currentdate = new Date();
 		currentdate = currentdate.getTime();
 		var startPos;
 		var geoSuccess = function(position) {
@@ -184,8 +155,6 @@
 			});
 		};
 		var geoError = function(error) {
-			console.log('Error occurred. Error code: ' + error.code + '. Message: ' + error.message);
-
 			$( "#event_list_area" ).empty();
 			$( "#event_list_area_more" ).empty();
 
@@ -197,22 +166,13 @@
 	}
 
 	app.events_load_more = function() {
-		var event_list_length;
-		var eventElement, eventElement_content;
-		var eventsHTML = '';
-		var date = '';
-		var hours = 0;
-		var time = '';
-		var timeto = '';
-		var length_in_hours = 0, length_text = '';
-		var currentdate = new Date();
+		var event_list_length,eventsHTML = '',date = '',hours = 0,time = '',timeto = '',length_in_hours = 0, length_text = '',currentdate = new Date();
 		currentdate = currentdate.getTime();
 
 		var page = Number(document.getElementById("event_list_area_more").getAttribute("value"))+1;
 		document.getElementById("event_list_area_more").setAttribute("value",page);
 
 		BaasBox.loadCollectionWithParams("elop_events", {page: page, recordsPerPage: BaasBox.pagelength, where: "date_end >= " + currentdate + " AND distance(latitude,longitude,"+app.location_latitude+","+app.location_longitude+") < .5", orderBy: "_creation_date DESC"}).done(function(res) {
-			/*console.log("res ", res);*/
 			app.eventList = res;
 
 			event_list_length = app.eventList.length;
@@ -251,21 +211,12 @@
 	}
 
 	app.events_load_more_past = function() {
-		var event_list_length;
-		var eventElement, eventElement_content;
-		var eventsHTML = '';
-		var date = '';
-		var hours = 0;
-		var time = '';
-		var timeto = '';
-		var length_in_hours = 0, length_text = '';
-		var currentdate = new Date();
+		var event_list_length,eventElement, eventElement_content,eventsHTML = '',date = '',hours = 0,time = '',timeto = '',length_in_hours = 0, length_text = '',currentdate = new Date();
 		currentdate = currentdate.getTime();
 
 		var page = Number(document.getElementById("event_list_area_more_past").getAttribute("value"));
 
 		BaasBox.loadCollectionWithParams("elop_events", {page: page, recordsPerPage: BaasBox.pagelength, where: "date_end < " + currentdate + " AND distance(latitude,longitude,"+app.location_latitude+","+app.location_longitude+") < 200.5", orderBy: "_creation_date DESC"}).done(function(res) {
-			// console.log("res ", res);
 			app.eventList = res;
 
 			event_list_length = app.eventList.length;
@@ -349,41 +300,30 @@
 		var startPos;
 		var geoSuccess = function(position) {
 			startPos = position;
-			/*document.getElementById('startLat').innerHTML = startPos.coords.latitude;document.getElementById('startLon').innerHTML = startPos.coords.longitude;*/
 			app.location_latitude = startPos.coords.latitude;
-			console.log(startPos.coords.latitude);
 			app.location_longitude = startPos.coords.longitude;
-			console.log(startPos.coords.longitude);
 		};
 		var geoError = function(error) {
 			console.log('Error occurred. Error code: ' + error.code + '. Message: ' + error.message);
-			// error.code can be: //	0: unknown error //	1: permission denied //	2: position unavailable (error response from location provider) //	3: timed out
+			// error.code can be: // 0: unknown error // 1: permission denied // 2: position unavailable (error response from location provider) //	3: timed out
 			return error;
 		};
 		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 	}
 
 	app.getCurrentPositionForEvent = function() {
-		var startPos, mapElement;
+		var startPos, mapElement, map_object;
 		var geoSuccess = function(position) {
 			startPos = position;
 			$('#event_location_progress').removeAttr('indeterminate');
 			document.getElementById('event_location_progress').value = '100';
 			document.getElementById('event_location_progress_label').innerHTML = 'Location Found, Using current location for event';
 			app.location_latitude = startPos.coords.latitude;
-			/*console.log("latitude: " + startPos.coords.latitude);*/
 			app.location_longitude = startPos.coords.longitude;
-			/*console.log("longitude: " + startPos.coords.longitude);*/
 			app.location_status = 4;
 
-			// Show map in event_add
-			mapElement = document.createElement("iframe");
-			mapElement.setAttribute("style", "height:350px;width:100%;");
-			mapElement.setAttribute("scrolling", "no");
-			mapElement.setAttribute("src","http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=16&center="+app.location_latitude+"_"+app.location_longitude+"&pushpins="+app.location_latitude+"_"+app.location_longitude);
-			document.getElementById("event_add_location").innerHTML = '';
-			document.getElementById("event_add_location").appendChild(mapElement);
-
+			map_object = { width: "100%", height: "350px", center: app.location_latitude+"_"+app.location_longitude, pins: app.location_latitude+"_"+app.location_longitude };
+			document.getElementById("event_add_location").innerHTML = app.generator.generateHtml("map", map_object);
 		};
 		var geoError = function(error) {
 			app.location_status = error.code;
@@ -406,10 +346,7 @@
 	}
 
 	app.generateTimes = function() {
-		var currentdate = new Date();
-		var eventTimesHTML = '';
-		var hours = 0;
-		var time = '';
+		var currentdate = new Date(), eventTimesHTML = '', hours = 0,time = '';
 		document.getElementById('eventTimes').innerHTML = '';
 
 		var nowMinutes = Math.floor(currentdate.getMinutes()/30)*30;
@@ -428,7 +365,6 @@
 			'</paper-button>';
 		for (var i = 0; i < 23; i++){
 			currentdate.setTime(currentdate.getTime() + (30*60*1000));
-			/*console.log(i+': '+currentdate);*/
 			hours = currentdate.getHours();
 			time = (hours%12==0?12:hours%12)+':'+('0'+currentdate.getMinutes()).slice(-2)+(hours<12?'am':'pm');
 			eventTimesHTML +=
@@ -466,17 +402,12 @@
 	}
 
 	app.show_map = function() {
-		var map_event_list_length, mapElement;
-		var map_event_list_coordinate_string = '';
-		var startPos;
-		var eventsHTML;
+		var map_event_list_length, map_object,map_event_list_coordinate_string = '',startPos,eventsHTML;
 		var geoSuccess = function(position) {
 			startPos = position;
 			app.location_latitude = startPos.coords.latitude;
 			app.location_longitude = startPos.coords.longitude;
-			console.log(app.location_latitude + ' ' + app.location_longitude )
 			BaasBox.loadCollectionWithParams("elop_events", {where:"distance(latitude,longitude,"+app.location_latitude+","+app.location_longitude+") < .5"}).done(function(res) {
-				/*console.log("res ", res);*/
 				app.mapEventList = res;
 
 				map_event_list_length = app.mapEventList.length;
@@ -484,23 +415,15 @@
 				for (var i = 0; i < map_event_list_length; i++){
 					map_event_list_coordinate_string += '~' + app.mapEventList[i].latitude + '_' + app.mapEventList[i].longitude;
 				}
-				/*console.log(map_event_list_coordinate_string)*/
-				/*Generate Map*/
-				mapElement = document.createElement("iframe");
-				mapElement.setAttribute("style", "height:400px;width:100%;");
-				mapElement.setAttribute("scrolling", "no");
-				mapElement.setAttribute("src","http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=16&center="+app.location_latitude+"_"+app.location_longitude+"&pushpins="+map_event_list_coordinate_string);
 
 				/*Add map to page*/
-				document.getElementById("map_event_list").innerHTML = '';
-				document.getElementById("map_event_list").appendChild(mapElement);
-			}).fail(function(error) {
-				console.log("error ", error);
-			});
+				map_object = { width: "100%", height: "400px", center: app.location_latitude+"_"+app.location_longitude, pins: map_event_list_coordinate_string};
+				document.getElementById("map_event_list").innerHTML = app.generator.generateHtml("map",map_object)
+			}).fail(function(error) {console.log("error ", error)});
 		};
 		var geoError = function(error) {
 			console.log('Error occurred. Error code: ' + error.code + '. Message: ' + error.message);
-			// error.code can be: //	0: unknown error //	1: permission denied //	2: position unavailable (error response from location provider) //	3: timed out
+			// error.code can be: // 0: unknown error //	1: permission denied //	2: position unavailable (error response from location provider) //	3: timed out
 
 			$( "#map_event_list" ).empty();
 
