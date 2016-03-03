@@ -25,10 +25,10 @@
 		// Routes
 		page('/', scrollToTop, function() {
 			if (app.isNotLoggedIn) {
-				app.BaasBox_fetchCurrentUser();
+				app.helper_user.BaasBox_fetchCurrentUser();
 			} else {
 				if (!app.elop_events_loaded) {
-					app.events_load();
+					app.helper_event.events_load();
 				}
 				app.route = 'events';
 			}
@@ -73,7 +73,7 @@
 		page('/event/:eventid', scrollToTop, function(data) {
 			app.route = 'event';
 			app.params = data.params;
-			app.event_load();
+			app.helper_event.event_load();
 		});
 
 		page('/event_add', scrollToTop, function() {
@@ -85,7 +85,7 @@
 
 		page('/events', scrollToTop, function() {
 			if (!app.elop_events_loaded) {
-				app.events_load();
+				app.helper_event.events_load();
 			}
 			app.route = 'events';
 		});
@@ -101,12 +101,12 @@
 			BaasBox.logout().done(function (res) {
 				app.isNotLoggedIn = true;
 				app.isNotLoggedInWithUser = true;
-				app.BaasBox_fetchCurrentUser();
+				app.helper_user.BaasBox_fetchCurrentUser();
 				app.route = 'signon';
 			}).fail(function (error) {
 				app.isNotLoggedIn = true;
 				app.isNotLoggedInWithUser = true;
-				app.BaasBox_fetchCurrentUser();
+				app.helper_user.BaasBox_fetchCurrentUser();
 				app.route = 'signon';
 			});
 			app.isNotLoggedIn = true;
@@ -139,10 +139,10 @@
 				app.signon_username_paper_input = '';
 				app.signon_password_paper_input = '';
 				if (!app.elop_events_loaded) {
-					app.events_load();
+					app.helper_event.events_load();
 				}
 				app.route = 'events';
-				app.BaasBox_fetchCurrentUser();
+				app.helper_user.BaasBox_fetchCurrentUser();
 			}).fail(function (err) {
 				console.log("error ", err);
 				app.isNotLoggedIn = true;
@@ -172,9 +172,9 @@
 					app.isNotLoggedIn = false;
 					app.isNotLoggedInWithUser = false;
 					if (!app.elop_events_loaded) {
-						app.events_load();
+						app.helper_event.events_load();
 					}
-					app.BaasBox_fetchCurrentUser();
+					app.helper_user.BaasBox_fetchCurrentUser();
 					app.route = 'events';
 				}).fail(function (error) {
 					app.signup_password_paper_input = ''; // Remove Passwords

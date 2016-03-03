@@ -114,7 +114,7 @@
 								<a data-route="events" href="/events" onclick="document.getElementById('event-title-paper-input').value='';app.event_title_validate();">
 									<paper-button raisedButton label="Click">Cancel</paper-button>
 								</a>
-								<a data-route="events" href="/events" onclick="app.event_add();">
+								<a data-route="events" href="/events" onclick="app.helper_event.event_add();">
 									<paper-button raisedButton label="Click" disabled={{!isEventSubmittable}}>Submit</paper-button>
 								</a>
 							</div>
@@ -135,7 +135,7 @@
 									<div class="size-big">Event Map</div>
 									<div class="size-small">Centered Push Pin is Your Location</div>
 								</div>
-								<div class="avatar size-small">Refresh&nbsp;<paper-icon-button icon="refresh" style="width: 32px;height: 32px;display: flex;align-items: center;justify-content: center;" onclick="clickHandler(app.show_map())"></paper-icon-button></div>
+								<div class="avatar size-small">Refresh&nbsp;<paper-icon-button icon="refresh" style="width: 32px;height: 32px;display: flex;align-items: center;justify-content: center;" onclick="clickHandler(app.helper_map.show_map())"></paper-icon-button></div>
 								<div style="clear: both;"></div>
 							</div>
 							<div id="map_event_list"></div>
@@ -488,8 +488,10 @@
 
 <script src="scripts/jquery.min.js"></script>
 <script src="baasbox/baasbox-0.8.4.min.js"></script>
-
 <script src="scripts/app.js"></script>
+<script src="scripts/helper_event.js"></script>
+<script src="scripts/helper_map.js"></script>
+<script src="scripts/helper_user.js"></script>
 <script src="scripts/generator.js"></script>
 <script src="baasbox/baasbox-custom.js"></script>
 <script src="scripts/app-custom.js"></script>

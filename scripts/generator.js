@@ -18,8 +18,8 @@
 			if (object == 0) htmlString += '<paper-card heading="No more events found"><div class="card-content style-scope elop-events">Can&#39;t find the event you want, go ahead and add an event.<br><br></div><div class="card-actions style-scope elop-events"><a data-route="event_add" href="/event_add"><paper-button>Add Event</paper-button></a></div></paper-card><div id="event_list_area_more_past" value="0"></div><paper-card id="events_load_more_past_card">';
 			else htmlString += '<div id="event_list_area_more" value="0"></div><paper-card id="events_load_more_card">';
 			htmlString += '<div class="card-content style-scope elop-events aligncenter">';
-			if (object == 0) htmlString += '<a onclick="app.events_load_more_past()"><paper-button>View Past Events</paper-button>';
-			else htmlString += '<a onclick="app.events_load_more()"><paper-button>Load More</paper-button>';
+			if (object == 0) htmlString += '<a onclick="app.helper_event.events_load_more_past()"><paper-button>View Past Events</paper-button>';
+			else htmlString += '<a onclick="app.helper_event.events_load_more()"><paper-button>Load More</paper-button>';
 			htmlString += '</a></div></paper-card>';
 			return htmlString;
 		}
@@ -37,8 +37,7 @@
 			return '<paper-card heading="Events Not Found"><div class="card-content style-scope elop-events">Was not able to get the events from the connection.</div></paper-card>';
 		}
 		map(object) {
-			var htmlString = '<iframe style="width:'+object.width+';height:'+object.height+'" scrolling="no" src="http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=16&amp;center='+object.center+'&amp;pushpins='+object.pins+'"></iframe>';
-			return htmlString;
+			return '<iframe style="width:'+object.width+';height:'+object.height+'" scrolling="no" src="http://dev.virtualearth.net/embeddedMap/v1/ajax/road?zoomLevel=16&amp;center='+object.center+'&amp;pushpins='+object.pins+'"></iframe>';
 		}
 	}
 
