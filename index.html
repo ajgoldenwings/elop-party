@@ -27,28 +27,16 @@
 			</paper-toolbar>
 
 			<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-				<a data-route="home" href="/" on-click="onDataRouteClick" hidden={{isNotLoggedIn}}>
-					<iron-icon icon="home"></iron-icon><span>Events</span>
-				</a>
-				<a data-route="map" href="/map" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}>
-					<iron-icon icon="maps:map"></iron-icon><span>Map</span>
-				</a>
-				<a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}>
-					<iron-icon icon="settings"></iron-icon><span>Settings</span>
-				</a>
-				<a data-route="more" href="/more" on-click="onDataRouteClick">
-					<iron-icon icon="more-horiz"></iron-icon><span>More</span>
-				</a>
-				<a data-route="signon" href="/signon" on-click="onDataRouteClick" hidden={{!isNotLoggedIn}}>
-					<iron-icon icon="supervisor-account"></iron-icon><span>Sign On</span>
-				</a>
+				<a data-route="home" href="/" on-click="onDataRouteClick" hidden={{isNotLoggedIn}}><iron-icon icon="home"></iron-icon><span>Events</span></a>
+				<a data-route="map" href="/map" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="maps:map"></iron-icon><span>Map</span></a>
+				<a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="settings"></iron-icon><span>Settings</span></a>
+				<a data-route="more" href="/more" on-click="onDataRouteClick"><iron-icon icon="more-horiz"></iron-icon><span>More</span></a>
+				<a data-route="signon" href="/signon" on-click="onDataRouteClick" hidden={{!isNotLoggedIn}}><iron-icon icon="supervisor-account"></iron-icon><span>Sign On</span></a>
 			</paper-menu>
 
 			<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]" style="position:absolute;bottom:1em;width:100%;" hidden={{isNotLoggedIn}}>
-				<a data-route="logout" href="/logout" on-click="onDataRouteClick">
-					<iron-icon icon="supervisor-account"></iron-icon><span>Log Off</span>
-				</a>
-			</paper-menu><!--<elop-menu></elop-menu>-->
+				<a data-route="logout" href="/logout" on-click="onDataRouteClick"><iron-icon icon="supervisor-account"></iron-icon><span>Log Off</span></a>
+			</paper-menu>
 		</paper-scroll-header-panel>
 
 		<paper-scroll-header-panel main fixed>
@@ -59,7 +47,7 @@
 				<section onclick="clickHandler(event)" hidden={{isNotLoggedIn}}>
 					<paper-icon-button icon="more-vert" data-dialog="buttonspopup"></paper-icon-button>
 				</section>
-			</paper-toolbar><!--<elop-toolbar></elop-toolbar>-->
+			</paper-toolbar>
 
 			<div class="content">
 				<iron-pages attr-for-selected="data-route" selected="{{route}}">
@@ -71,18 +59,14 @@
 								<div><b>Promoter: <span>{{event_current_promoter}}</span></b></div>
 							</div>
 							<div class="card-content">
-								<div id="event_map"></div>
-								<small>Centered Push Pin is the Event</small>
+								<div id="event_map"></div><small>Centered Push Pin is the Event</small>
 							</div>
 						</paper-card>
 					</section>
 					<section data-route="event_add">
 						<paper-card heading="Add Event">
 							<div class="card-content">
-								<paper-input label="Event Title" id="event-title-paper-input" value="{{event_title_paper_input}}"
-									error-message="At least 5 characters." class="invalid" maxlength="25" minlength="5" char-counter required
-									onkeyup="eventAdd_validate()">
-								</paper-input>
+								<paper-input label="Event Title" id="event-title-paper-input" value="{{event_title_paper_input}}" error-message="At least 5 characters." class="invalid" maxlength="25" minlength="5" char-counter required onkeyup="eventAdd_validate()"></paper-input>
 
 								<br><br>
 
@@ -131,10 +115,7 @@
 					<section data-route="map">
 						<paper-card class='map'>
 							<div class="card-content">
-								<div class="title">
-									<div class="size-big">Event Map</div>
-									<div class="size-small">Centered Push Pin is Your Location</div>
-								</div>
+								<div class="title"><div class="size-big">Event Map</div><div class="size-small">Centered Push Pin is Your Location</div></div>
 								<div class="avatar size-small">Refresh&nbsp;<paper-icon-button icon="refresh" style="width: 32px;height: 32px;display: flex;align-items: center;justify-content: center;" onclick="clickHandler(app.helper_map.show_map())"></paper-icon-button></div>
 								<div style="clear: both;"></div>
 							</div>
@@ -169,15 +150,9 @@
 								<p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
 								<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
 								<ul>
-									<li>Redistributions of source code must retain the above copyright
-										notice, this list of conditions and the following disclaimer.</li>
-									<li>Redistributions in binary form must reproduce the above
-										copyright notice, this list of conditions and the following disclaimer
-										in the documentation and/or other materials provided with the
-										distribution.</li>
-									<li>Neither the name of Google Inc. nor the names of its
-										contributors may be used to endorse or promote products derived from
-										this software without specific prior written permission.</li>
+									<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+									<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+									<li>Neither the name of Google Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
 								</ul>
 								<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
 							</div>
@@ -197,9 +172,7 @@
 							</div>
 							<div class="card-actions">
 								<div hidden={{isNotLoggedIn}}>
-									<a data-route="change_Password_Action" href="/change_Password_Action" hidden={{hideSettingsChangePassword}}>
-										<paper-button label="Click">Change Password</paper-button>
-									</a>
+									<a data-route="change_Password_Action" href="/change_Password_Action" hidden={{hideSettingsChangePassword}}><paper-button label="Click">Change Password</paper-button></a>
 								</div>
 							</div>
 						</paper-card>
@@ -211,40 +184,26 @@
 								<paper-input placeholder="Password" id="signon-password-paper-input" value="{{signon_password_paper_input}}" error="Enter Your Password" type="password" class="invalid" invalid required></paper-input>
 							</div>
 							<div class="card-actions">
-								<a data-route="signon_Action" href="/signon_Action">
-									<paper-button raisedButton label="Click">Sign On</paper-button>
-								</a>
+								<a data-route="signon_Action" href="/signon_Action"><paper-button raisedButton label="Click">Sign On</paper-button></a>
 							</div>
 						</paper-card>
 						<paper-card>
 							<div class="card-content">
-								<a data-route="signup" href="/signup">
-									<paper-button raisedButton label="Click">Sign Up</paper-button>
-								</a>
-								<a data-route="signon_withoutuser" href="/signon_withoutuser">
-									<paper-button raisedButton label="Click">Not Now</paper-button>
-								</a>
+								<a data-route="signup" href="/signup"><paper-button raisedButton label="Click">Sign Up</paper-button></a>
+								<a data-route="signon_withoutuser" href="/signon_withoutuser"><paper-button raisedButton label="Click">Not Now</paper-button></a>
 							</div>
 						</paper-card>
 					</section>
 					<section data-route="signon_withoutuser">
 						<paper-card heading="What you are missing:">
 							<div class="card-content">
-								<ul>
-									<li>Viewing and Createing Events</li>
-									<li>Access to Event Features</li>
-									<li>Access to Social Features</li>
-								</ul>
+								<ul><li>Viewing and Createing Events</li><li>Access to Event Features</li><li>Access to Social Features</li></ul>
 							</div>
 						</paper-card>
 						<paper-card>
 							<div class="card-content">
-								<a data-route="signon" href="/signon">
-									<paper-button raisedButton label="Click">Sign On</paper-button>
-								</a>
-								<a data-route="signup" href="/signup">
-									<paper-button raisedButton label="Click">Sign Up</paper-button>
-								</a>
+								<a data-route="signon" href="/signon"><paper-button raisedButton label="Click">Sign On</paper-button></a>
+								<a data-route="signup" href="/signup"><paper-button raisedButton label="Click">Sign Up</paper-button></a>
 							</div>
 						</paper-card>
 					</section>
@@ -256,39 +215,27 @@
 								<paper-input placeholder="Verify Password" id="signup-verify-password-paper-input" value="{{signup_verify_password_paper_input}}" error="Verify Your Password" type="password" class="invalid" invalid required></paper-input>
 							</div>
 							<div class="card-actions">
-								<a data-route="signup_Action" href="/signup_Action">
-									<paper-button raisedButton label="Click">Sign Up</paper-button>
-								</a>
+								<a data-route="signup_Action" href="/signup_Action"><paper-button raisedButton label="Click">Sign Up</paper-button></a>
 							</div>
 						</paper-card>
 						<paper-card>
 							<div class="card-actions">
-								<a data-route="signon" href="/signon">
-									<paper-button raisedButton label="Click">Sign On</paper-button>
-								</a>
-								<a data-route="signon_withoutuser" href="/signon_withoutuser">
-									<paper-button raisedButton label="Click">Not Now</paper-button>
-								</a>
+								<a data-route="signon" href="/signon"><paper-button raisedButton label="Click">Sign On</paper-button></a>
+								<a data-route="signon_withoutuser" href="/signon_withoutuser"><paper-button raisedButton label="Click">Not Now</paper-button></a>
 							</div>
 						</paper-card>
 					</section>
 					<section data-route="users">
 						<paper-material elevation="1">
-							<h2 class="page-title">Users</h2>
-							<p>This is the users section</p>
-							<a href="/users/Rob">Rob</a>
+							<h2 class="page-title">Users</h2><p>This is the users section</p><a href="/users/Rob">Rob</a>
 						</paper-material>
 						<paper-material elevation="1">
-							<h2 class="page-title">Users</h2>
-							<p>More users to come</p>
+							<h2 class="page-title">Users</h2><p>More users to come</p>
 						</paper-material>
 					</section>
 					<section data-route="user-info">
 						<paper-material elevation="1">
-							<h2 class="page-title">
-								User:<span>{{params.name}}</span>
-							</h2>
-							<div>This is <span>{{params.name}}</span>'s section</div>
+							<h2 class="page-title">User:<span>{{params.name}}</span></h2><div>This is <span>{{params.name}}</span>'s section</div>
 						</paper-material>
 					</section>
 				</iron-pages>
@@ -349,22 +296,11 @@
 					<a onclick="setLength(300)"><paper-button dialog-confirm>5 Hours</paper-button></a>
 				</paper-dialog-scrollable>
 				<hr>
-				<div suffix>
-					<small>Up to 5 hours</small><br>
-					<small>30 Minute Increments</small>
-				</div>
+				<div suffix><small>Up to 5 hours</small><br><small>30 Minute Increments</small></div>
 			</paper-dialog>
 			<paper-dialog id="eventtimes" with-backdrop>
-				<h2>Event Start Time</h2>
-				<paper-dialog-scrollable>
-					<div id="eventTimes">
-					</div>
-				</paper-dialog-scrollable>
-				<hr>
-				<div suffix>
-					<small>Times within 12 hours</small><br>
-					<small>30 Minute Increments</small>
-				</div>
+				<h2>Event Start Time</h2><paper-dialog-scrollable><div id="eventTimes"></div></paper-dialog-scrollable>
+				<hr><div suffix><small>Times within 12 hours</small><br><small>30 Minute Increments</small></div>
 			</paper-dialog>
 			<paper-dialog id="buttonspopup" style="background:transparent;box-shadow:none;top:0;height:100%;width:100%;margin:0;left:0;max-width:auto;" with-backdrop>
 				<div id="action_panel" dialog-confirm hidden={{isNotLoggedIn}}>
@@ -388,10 +324,7 @@
 									<a href="" class="right" dialog-confirm><object class="icon" type="image/svg+xml" data="./images/icons/Icons-Shout.svg"></object></a>
 								</div>
 							</div>
-							<div style="display:table-cell;">
-								<div class="icon-container">
-								</div>
-							</div>
+							<div style="display:table-cell;"><div class="icon-container"></div></div>
 						</div>
 					</div>
 					<div class="footer">
@@ -417,19 +350,12 @@
 			<div class="welcome_page_content">
 				<div class="welcome_page_content_top"><h2>*<div style="color: #9A6ED6;display:inline-block;">**</div></h2></div>
 				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">
-						Picture of TKE SCSU<br>Nov 15
-					</div>
-					<div class="welcome_page_content_footer_right right">
-
-					</div>
+					<div class="welcome_page_content_footer_left left">Picture of TKE SCSU<br>Nov 15</div>
+					<div class="welcome_page_content_footer_right right"></div>
 				</div>
 				<div class="welcome_page_content_bottom">
 					<h2>Make events the hassle-free way. Have the app handle spreading the word out for you.</h2>
-					<a data-route="signon" href="/signon" onclick="
-							localStorage.elop_welcomed = true;
-							document.getElementById('paperDrawerPanel').style.display = 'inline';
-							document.getElementById('welcome_container').style.display = 'none';">
+					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;document.getElementById('paperDrawerPanel').style.display = 'inline';document.getElementById('welcome_container').style.display = 'none';">
 						<paper-button raisedButton label="Click">Get Started</paper-button>
 					</a>
 				</div>
@@ -441,17 +367,12 @@
 			<div class="welcome_page_content">
 				<div class="welcome_page_content_top"><h2><div style="color: #9A6ED6;display:inline-block;">*</div>*<div style="color: #9A6ED6;display:inline-block;">*</div></h2></div>
 				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">
-						Picture of Heather and Rina<br>Nov 15
-					</div>
-					<div class="welcome_page_content_footer_right right">
-
-					</div>
+					<div class="welcome_page_content_footer_left left">Picture of Heather and Rina<br>Nov 15</div>
+					<div class="welcome_page_content_footer_right right"></div>
 				</div>
 				<div class="welcome_page_content_bottom">
 					<h2>Seek out an adventure. Live it up to the fullest. Choose the type of event you want be at.</h2>
-					<a data-route="signon" href="/signon" onclick="
-							localStorage.elop_welcomed = true;
+					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;
 							document.getElementById('paperDrawerPanel').style.display = 'inline';
 							document.getElementById('welcome_container').style.display = 'none';">
 						<paper-button raisedButton label="Click">Get Started</paper-button>
@@ -465,17 +386,12 @@
 			<div class="welcome_page_content">
 				<div class="welcome_page_content_top"><h2><div style="color: #9A6ED6;display:inline-block;">**</div>*</h2></div>
 				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">
-						Picture of TKE SCSU<br>Nov 15
-					</div>
-					<div class="welcome_page_content_footer_right right">
-
-					</div>
+					<div class="welcome_page_content_footer_left left">Picture of TKE SCSU<br>Nov 15</div>
+					<div class="welcome_page_content_footer_right right"></div>
 				</div>
 				<div class="welcome_page_content_bottom">
 					<h2>Accurately see how popular an event will be with who is currently at and will be at the event.</h2>
-					<a data-route="signon" href="/signon" onclick="
-							localStorage.elop_welcomed = true;
+					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;
 							document.getElementById('paperDrawerPanel').style.display = 'inline';
 							document.getElementById('welcome_container').style.display = 'none';">
 						<paper-button raisedButton label="Click">Get Started</paper-button>
