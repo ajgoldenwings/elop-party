@@ -6,8 +6,6 @@
 	// Current Event
 	// if(typeof app.event_current_title==='undefined'){app.event_current_title='';}// if(typeof app.event_current_latitude==='undefined'){app.event_current_latitude='';}// if(typeof app.event_current_length==='undefined'){app.event_current_length='';}// if(typeof app.event_current_longitude==='undefined'){app.event_current_longitude='';}// if(typeof app.event_current_promoter==='undefined'){app.event_current_promoter='loading...';}// if(typeof app.event_current_time==='undefined'){app.event_current_time='loading...';}// if(typeof app.event_current_timeto==='undefined'){app.event_current_timeto='loading...';}
 
-	// if ("geolocation" in navigator) console.log('geolocation is available'); else console.log('geolocation IS NOT available');
-
 	navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
 		app.permissionStatus_geolocation = permissionStatus.state;
 		permissionStatus.onchange = function() {app.permissionStatus_geolocation = this.state;};

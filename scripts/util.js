@@ -17,8 +17,13 @@
 			typeof helper_mapJS    === 'undefined'?console.error("Undefined<-helper_mapJS"   ):files++;
 			typeof generatorJS     === 'undefined'?console.error("Undefined<-generatorJS"    ):files++;
 		}
+
+		startApp() {
+			console.log("Starting app");
+		}
 	};
 
 	app.util = new Utility();
+	app.util.startApp();
 
 })(document);
