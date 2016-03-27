@@ -44,7 +44,7 @@
 			<paper-toolbar id="mainToolbar">
 				<paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
 				<span class="title alignleft">Elop Party</span>
-				<section onclick="clickHandler(event)" hidden={{isNotLoggedIn}}>
+				<section onclick="clickHandler(event)">
 					<paper-icon-button icon="more-vert" data-dialog="buttonspopup"></paper-icon-button>
 				</section>
 			</paper-toolbar>
@@ -286,40 +286,7 @@
 				<h2>Event Start Time</h2><paper-dialog-scrollable><div id="eventTimes"></div></paper-dialog-scrollable>
 				<hr><div suffix><small>Times within 12 hours</small><br><small>30 Minute Increments</small></div>
 			</paper-dialog>
-			<paper-dialog id="buttonspopup" style="background:transparent;box-shadow:none;top:0;height:100%;width:100%;margin:0;left:0;max-width:auto;" with-backdrop>
-				<div id="action_panel" dialog-confirm hidden={{isNotLoggedIn}}>
-					<div style="height:10%;padding-top:0;opacity:0.85;" class="right padding16"><h3>Back</h3></div>
-					<div id="action_buttons">
-						<div style="display: table-row;">
-							<div style="display:table-cell;">
-								<div class="icon-container" hidden={{isNotLoggedInWithUser}}>
-									<a data-route="event_add" href="/event_add" class="right" dialog-confirm><object class="icon" type="image/svg+xml" data="./images/icons/Icons-Add.svg">SVG images are not loading...Your browser may not support these images.</object></a>
-								</div>
-							</div>
-							<div style="display:table-cell;">
-								<div class="icon-container" hidden={{isNotLoggedInWithUser}}>
-									<a data-route="map" href="/map" dialog-confirm><object class="icon" type="image/svg+xml" data="./images/icons/Icons-Map.svg"></object></a>
-								</div>
-							</div>
-						</div>
-						<div style="display: table-row">
-							<div style="display:table-cell;">
-								<div class="icon-container" style="opacity:0.25;" hidden={{isNotLoggedInWithUser}}>
-									<a href="" class="right" dialog-confirm><object class="icon" type="image/svg+xml" data="./images/icons/Icons-Shout.svg"></object></a>
-								</div>
-							</div>
-							<div style="display:table-cell;"><div class="icon-container"></div></div>
-						</div>
-					</div>
-					<div class="footer">
-						<div class="bottom">
-							<div class="left padding16"><h3><a data-route="settings" href="/settings" class="nowrap" on-click="onDataRouteClick">Elop Party</a></h3></div>
-							<div class="right text-right padding16"><h3><a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><span>{{elop_username}}</span></a><span hidden={{!isNotLoggedInWithUser}}>This is the Navigation Overlay.  Login to get navigations.</span></h3></div>
-						</div>
-					</div>
-				</div>
-			</paper-dialog>
-
+			<elop-dialog-action loggedin="{{isNotLoggedInWithUser}}" username="{{elop_username}}"></elop-dialog-action>
 		</paper-scroll-header-panel>
 	</paper-drawer-panel>
 
