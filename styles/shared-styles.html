@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+
+<dom-module id="shared-styles">
+<template>
+<style>
+	a {text-decoration: none; color: var(--color-secondary-1-2-pale);}
+	paper-dialog {
+		position: fixed;
+		display: block;
+		margin: 24px 40px;
+		-webkit-overflow-scrolling: touch;
+	}
+	paper-dialog-scrollable {
+		font-size: initial;
+	}
+	iframe {border:0;}
+
+	.aligncenter {text-align:center;}
+	.alignleft {text-align:left}
+	.alignright {text-align:right}
+	.bottom {bottom:0;position:absolute;left:0;right:0;overflow: hidden;}
+	.center {text-align:center;width:100%;}
+	.left {float:left;}
+	.right {float:right;margin-left: auto;}
+	.size-big {font-size: 24px;padding: 0 0 16px;font-weight: bold;}
+	.size-large {font-size: 20px;padding: 0 0 12px;}
+	.size-medium {font-size: 16px;padding-bottom: 8px;}
+	.size-small {font-size: smaller;padding-bottom: 8px;}
+	.text-left {text-align: left;}
+	.text-right {text-align: right;}
+	.inline {display:inline;}
+	.inline-block {display:inline-block;}
+	.nowrap {white-space:nowrap;}
+	.padding16 {padding: 16px;}
+</style>
+</template>
+</dom-module>

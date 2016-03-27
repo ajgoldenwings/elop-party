@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="description" content="">
@@ -14,6 +14,8 @@
 <!-- Add to homescreen for Safari on iOS --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Polymer Starter Kit"><link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
 <!-- Tile icon for Win8 (144x144) --><meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 <link rel="import" href="elements/elements.html">
+
+<style is="custom-style" include="shared-styles"></style>
 </head>
 
 <body unresolved class="fullbleed layout vertical">
@@ -131,14 +133,18 @@
 						<a onclick="app.contactHidden?app.contactHidden=false:app.contactHidden=true">
 						<paper-card heading="Contact">
 							<div class="card-content" hidden={{contactHidden}}>
-								support@ElopParty.com
+								support@ElopParty.com or Anthony.James.Pearson@gmail.com
 							</div>
 						</paper-card>
 						</a>
 						<a onclick="app.contentRightsHidden?app.contentRightsHidden=false:app.contentRightsHidden=true"><paper-card heading="Content Rights"></paper-card></a>
 						<paper-card heading="Elop Party" hidden={{contentRightsHidden}}>
 							<div class="card-content">
-								<p class="paper-font-subhead">All rights reserved to Elop Party.  Rights may be overridden by copyrights below.</p>
+								<p class="paper-font-subhead">This website and its content is copyright of Elop Party - © Elop Party 2016. All rights reserved.</p>
+								<p>Any redistribution or reproduction of part or all of the contents in any form is prohibited.</p>
+								<p>You may not, except with our express written permission, distribute or commercially exploit the content. Nor may you transmit it or store it in any other website or other form of electronic retrieval system.</p>
+								<p>In no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+								<p>Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.</p>
 							</div>
 						</paper-card>
 						<paper-card heading="License" id="license" class="paper-font-body2" hidden={{contentRightsHidden}}>
