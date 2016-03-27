@@ -1,4 +1,4 @@
-<!doctype html><!--@license Copyright (c) 2015 The Polymer Project Authors. All rights reserved. This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as part of the polymer project is also subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt-->
+<!doctype html>
 <html lang="">
 <head>
 <meta charset="utf-8">
@@ -105,10 +105,7 @@
 						</paper-card>
 					</section>
 					<section data-route="events">
-						<h2 class="content_custom" hidden={{isNotLoggedInWithUser}}>Nearby Events</h2>
-						<div id="event_list_area">
-							<paper-card heading="Loading..."><div class="card-content">Please wait for events to load.</div></paper-card>
-						</div>
+						<elop-event-list></elop-event-list>
 					</section>
 					<section data-route="loading"><paper-card heading="Loading"><div class="card-content">Please wait...</div></paper-card></section>
 					<section data-route="logingout"><paper-card heading="Logging Out"><div class="card-content">Please wait...</div></paper-card></section>
@@ -344,63 +341,7 @@
 
 </template>
 
-<swipe-pages selected="0" threshold="0.35" id="welcome_container">
-	<swipe-page>
-		<div class="welcome_page" style="background-image: url('/images/art/1.jpg');">
-			<div class="welcome_page_content">
-				<div class="welcome_page_content_top"><h2>*<div style="color: #9A6ED6;display:inline-block;">**</div></h2></div>
-				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">Picture of TKE SCSU<br>Nov 15</div>
-					<div class="welcome_page_content_footer_right right"></div>
-				</div>
-				<div class="welcome_page_content_bottom">
-					<h2>Make events the hassle-free way. Have the app handle spreading the word out for you.</h2>
-					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;document.getElementById('paperDrawerPanel').style.display = 'inline';document.getElementById('welcome_container').style.display = 'none';">
-						<paper-button raisedButton label="Click">Get Started</paper-button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</swipe-page>
-	<swipe-page>
-		<div class="welcome_page" style="background-image: url('/images/art/2.jpg');">
-			<div class="welcome_page_content">
-				<div class="welcome_page_content_top"><h2><div style="color: #9A6ED6;display:inline-block;">*</div>*<div style="color: #9A6ED6;display:inline-block;">*</div></h2></div>
-				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">Picture of Heather and Rina<br>Nov 15</div>
-					<div class="welcome_page_content_footer_right right"></div>
-				</div>
-				<div class="welcome_page_content_bottom">
-					<h2>Seek out an adventure. Live it up to the fullest. Choose the type of event you want be at.</h2>
-					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;
-							document.getElementById('paperDrawerPanel').style.display = 'inline';
-							document.getElementById('welcome_container').style.display = 'none';">
-						<paper-button raisedButton label="Click">Get Started</paper-button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</swipe-page>
-	<swipe-page>
-		<div class="welcome_page" style="background-image: url('/images/art/3.jpg');">
-			<div class="welcome_page_content">
-				<div class="welcome_page_content_top"><h2><div style="color: #9A6ED6;display:inline-block;">**</div>*</h2></div>
-				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">Picture of TKE SCSU<br>Nov 15</div>
-					<div class="welcome_page_content_footer_right right"></div>
-				</div>
-				<div class="welcome_page_content_bottom">
-					<h2>Accurately see how popular an event will be with who is currently at and will be at the event.</h2>
-					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;
-							document.getElementById('paperDrawerPanel').style.display = 'inline';
-							document.getElementById('welcome_container').style.display = 'none';">
-						<paper-button raisedButton label="Click">Get Started</paper-button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</swipe-page>
-</swipe-pages>
+<elop-swipe-pages></elop-swipe-pages>
 
 <script src="scripts/jquery.min.js"></script>
 <script src="baasbox/baasbox-0.8.4.min.js"></script>

@@ -1,0 +1,65 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="elop-event-list" attributes="name">
+<template>
+	<style>
+		h2 {
+			text-align: center;
+		}
+		paper-material, paper-card, .content_custom {
+			width: calc(98.66% - 16px);
+			border-radius: 2px;
+			height: 100%;
+			padding: 16px;
+			margin: 6px auto;
+			display: block;
+		}
+		paper-card {
+			/*background-color: transparent;*/
+			padding: 0;
+		}
+
+		/* Breakpoints */
+
+		/* Small */
+		@media (max-width: 600px) {
+			paper-material, paper-card, .content_custom {
+				width: auto;
+				--menu-container-display: none;
+				/*padding-left: 16px;
+				padding-right: 16px;*/
+				display: block;
+				margin-top: 16px;
+			}
+
+		}
+
+		/* Tablet+ */
+		@media (min-width: 601px) {
+			paper-material, paper-card, .content_custom {
+				width: calc(98% - 46px);
+				margin-bottom: 32px;
+				/*padding-left: 16px;
+				padding-right: 16px;*/
+				display: block;
+			}
+		}
+
+	</style>
+	<h2 class="content_custom" hidden={{isNotLoggedInWithUser}}>Nearby Events</h2>
+	<div id="event_list_area">
+		<paper-card heading="Loading..."><div class="card-content">Please wait for events to load.</div></paper-card>
+	</div>
+</template>
+<script>
+	(function () {
+		'use strict';
+		Polymer({
+			is: 'elop-event-list',
+			properties: {
+
+			}
+		});
+	})();
+</script>
+</dom-module>
