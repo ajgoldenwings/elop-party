@@ -1,5 +1,3 @@
-<!--@license Copyright (c) 2015 The Polymer Project Authors. All rights reserved. This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as part of the polymer project is also subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt-->
-
 <script src="../bower_components/page/page.js"></script>
 <script>
 	window.addEventListener('WebComponentsReady', function() {
@@ -43,27 +41,9 @@
 		});
 
 		page('/change_Password_Action', scrollToTop, function() {
-			if (app.change_password_paper_input != app.change_verify_password_paper_input || app.change_password_paper_input == '' || app.change_verify_password_paper_input == '' || app.verify_password_paper_input == '') {
-				if (!(app.change_password_paper_input == '' && app.change_verify_password_paper_input == '' && app.verify_password_paper_input == ''))
-					alert("Verify old and new passwords");
-				app.verify_password_paper_input = '';
-				app.change_password_paper_input = '';
-				app.change_verify_password_paper_input = '';
+			app.helper_user.change_password();
+			app.route = 'settings';
 
-				app.route = 'settings';
-			} else {
-				app.route = 'loading';
-				BaasBox.changePassword(app.verify_password_paper_input, app.change_password_paper_input).done(function(res) {
-					app.route = 'settings';
-					alert("Password changed");
-				}).fail(function(error) {
-					alert("Passwords do not match");
-					app.route = 'settings';
-				});
-				app.verify_password_paper_input = '';
-				app.change_password_paper_input = '';
-				app.change_verify_password_paper_input = '';
-			}
 		});
 
 		page('/contact', scrollToTop, function() {
@@ -92,25 +72,7 @@
 
 		page('/logout', scrollToTop, function() {
 			app.route = 'logingout';
-			document.getElementById("paperDrawerPanel").style.display = 'none';
-			document.getElementById("welcome_container").style.display = 'inline';
-
-			document.getElementById("event_list_area").innerHTML = '<paper-card heading="Loading..."><div class="card-content">Please wait for events to load.</div></paper-card>'
-			app.elop_events_loaded = false;
-
-			BaasBox.logout().done(function (res) {
-				app.isNotLoggedIn = true;
-				app.isNotLoggedInWithUser = true;
-				app.helper_user.BaasBox_fetchCurrentUser();
-				app.route = 'signon';
-			}).fail(function (error) {
-				app.isNotLoggedIn = true;
-				app.isNotLoggedInWithUser = true;
-				app.helper_user.BaasBox_fetchCurrentUser();
-				app.route = 'signon';
-			});
-			app.isNotLoggedIn = true;
-			app.isNotLoggedInWithUser = true;
+			app.helper_user.logout();
 			app.route = 'signon';
 		});
 
@@ -132,29 +94,11 @@
 
 		page('/signon_Action', scrollToTop, function() {
 			app.route = 'loading';
-
-			BaasBox.login(app.signon_username_paper_input, app.signon_password_paper_input).done(function (user) {
-				app.isNotLoggedIn = false;
-				app.isNotLoggedInWithUser = false;
-				app.signon_username_paper_input = '';
-				app.signon_password_paper_input = '';
-				if (!app.elop_events_loaded) {
-					app.helper_event.events_load();
-				}
-				app.route = 'events';
-				app.helper_user.BaasBox_fetchCurrentUser();
-			}).fail(function (err) {
-				console.log("error ", err);
-				app.isNotLoggedIn = true;
-				app.isNotLoggedInWithUser = true;
-				app.signon_username_paper_input = '';
-				app.signon_password_paper_input = '';
-				app.route = 'signon';
-			});
+			app.helper_user.login();
 		});
 
-		page('/signon_withoutuser', scrollToTop, function() {
-			app.route = 'signon_withoutuser';
+		page('/welcome', scrollToTop, function() {
+			app.welcomeShow();
 		});
 
 		page('/signup', scrollToTop, function() {
@@ -163,27 +107,7 @@
 
 		page('/signup_Action', scrollToTop, function() {
 			app.route = 'loading';
-			if (app.signup_password_paper_input != app.signup_verify_password_paper_input || app.signup_password_paper_input == '' || app.signup_verify_password_paper_input == '') {
-				app.route = 'signon';
-			} else {
-				BaasBox.signup(app.signup_username_paper_input, app.signup_password_paper_input).done(function (res) {
-					app.signup_password_paper_input = ''; // Remove Passwords
-					app.signup_verify_password_paper_input = '';
-					app.isNotLoggedIn = false;
-					app.isNotLoggedInWithUser = false;
-					if (!app.elop_events_loaded) {
-						app.helper_event.events_load();
-					}
-					app.helper_user.BaasBox_fetchCurrentUser();
-					app.route = 'events';
-				}).fail(function (error) {
-					app.signup_password_paper_input = ''; // Remove Passwords
-					app.signup_verify_password_paper_input = '';
-					app.isNotLoggedIn = true;
-					app.isNotLoggedInWithUser = true;
-					app.route = 'signon';
-				});
-			}
+			app.helper_user.signup();
 		});
 
 		page('/users', scrollToTop, function() {
