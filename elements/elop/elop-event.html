@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
+
+<dom-module id="elop-event">
+
+<template>
+	<style is="custom-style" include="shared-styles"></style>
+
+	<paper-card heading="{{current_title}}">
+		<div class="card-content">
+			<div>Time: <span>{{current_time}}</span> to <span>{{current_timeto}}</span></div>
+			<div>Length: <span>{{getTimeLength}}</span></div>
+			<div><b>Promoter: <span>{{current_promoter}}</span></b></div>
+		</div>
+		<div class="card-content">
+			<div id="event_map"></div><small>Centered Push Pin is the Event</small>
+		</div>
+	</paper-card>
+</template>
+
+<script>
+	(function () {
+		'use strict';
+		Polymer({
+			is: 'elop-event',
+			properties: {
+				current_time: {
+					type: String,
+					value: ""
+				},
+				current_timeto: {
+					type: String,
+					value: ""
+				},
+				current_promoter: {
+					type: String,
+					value: ""
+				},
+				current_length: {
+					type: Number,
+					value: 0
+				},
+				getTimeLength: {
+					type: String,
+					computed: "computeTimeLength(current_length)"
+				},
+			},
+			computeTimeLength: function(current_length) {
+				var length_in_hours = current_length/60;
+				var length_text = length_in_hours==1?'hour':'hours';
+				return length_in_hours+' '+length_text;
+			}
+		});
+	})();
+</script>
+</dom-module>

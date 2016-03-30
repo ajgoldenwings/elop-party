@@ -3,8 +3,6 @@
 
 	// Initialize App
 	// if(typeof app.route==='undefined'){app.route='loading';}// if(typeof app.isNotLoggedIn==='undefined'){app.isNotLoggedIn=true;}// if(typeof app.isNotLoggedInWithUser==='undefined'){app.isNotLoggedInWithUser=true;}// if(typeof app.isEventSubmittable==='undefined'){app.isEventSubmittable=false;}// if(typeof app.aboutHidden==='undefined'){app.aboutHidden=true;}// if(typeof app.contactHidden==='undefined'){app.contactHidden=true;}// if(typeof app.contentRightsHidden==='undefined'){app.contentRightsHidden=true;}// if(typeof app.hideSettingsChangePassword==='undefined'){app.hideSettingsChangePassword=true;}// if(typeof app.hideSignUp==='undefined'){app.hideSignUp=true;}// if(typeof app.elop_events_loaded==='undefined'){app.elop_events_loaded=false;}// if(typeof app.elop_username==='undefined'){app.elop_username='';}// if(typeof app.permissionStatus_geolocation==='undefined'){app.permissionStatus_geolocation='';}
-	// Current Event
-	// if(typeof app.event_current_title==='undefined'){app.event_current_title='';}// if(typeof app.event_current_latitude==='undefined'){app.event_current_latitude='';}// if(typeof app.event_current_length==='undefined'){app.event_current_length='';}// if(typeof app.event_current_longitude==='undefined'){app.event_current_longitude='';}// if(typeof app.event_current_promoter==='undefined'){app.event_current_promoter='loading...';}// if(typeof app.event_current_time==='undefined'){app.event_current_time='loading...';}// if(typeof app.event_current_timeto==='undefined'){app.event_current_timeto='loading...';}
 
 	navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
 		app.permissionStatus_geolocation = permissionStatus.state;
@@ -104,12 +102,6 @@
 				'</paper-button>';
 		}
 		document.getElementById('eventTimes').innerHTML = eventTimesHTML;
-	}
-
-	app.getTimeLength = function(length) {
-		var length_in_hours = length/60;
-		var length_text = length_in_hours==1?'hour':'hours';
-		return length_in_hours+' '+length_text;
 	}
 
 	app.resetCurrentPositionReset = function() {
