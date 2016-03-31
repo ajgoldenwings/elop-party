@@ -6,6 +6,7 @@
 			if (!document.getElementById('event-title-paper-input').validate() || app.location_status != 4)
 				return;
 			event.title = app.event_title_paper_input;
+			console.log(event.title);
 			event.latitude = app.location_latitude;
 			event.longitude = app.location_longitude;
 			event.length = app.event_length;

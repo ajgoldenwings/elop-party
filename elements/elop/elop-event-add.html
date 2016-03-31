@@ -1,0 +1,115 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
+
+<dom-module id="elop-event-add">
+
+<template>
+	<style is="custom-style" include="shared-styles"></style>
+
+	<paper-card heading="Add Event">
+		<div class="card-content">
+			<paper-input label="Event Title" id="event-title-paper-input" value="{{event_title}}" error-message="At least 5 characters." class="invalid" maxlength="25" minlength="5" char-counter required onkeyup="eventAdd_validate()"></paper-input>
+
+			<br><br>
+
+			<section onclick="clickHandler(event)" class="center">
+				<a onclick="app.generateTimes();">
+					<paper-button data-dialog="eventtimes">
+						<iron-icon icon="schedule"></iron-icon><span>Start Time: </span><div id="event-time" class="inline"></div>
+					</paper-button>
+				</a>
+			</section>
+
+			<section onclick="clickHandler(event)" class="center">
+				<paper-button data-dialog="eventlengths">
+					<iron-icon icon="image:timer"></iron-icon><span>Event Length: </span><div id="event-length" class="inline"></div>
+				</paper-button>
+			</section>
+
+			<br><br>
+
+			<div class="vertical-section">
+				<div id="event_add_location"></div>
+				<paper-progress id="event_location_progress" indeterminate></paper-progress>
+				<div id="event_location_progress_label" class="right" style="font-size: 12px;">Finding Location Coordinates</div>
+			</div>
+
+			<br>
+		</div>
+		<div class="card-actions">
+			<a data-route="events" href="/events" onclick="document.getElementById('event-title-paper-input').value='';app.event_title_validate();">
+				<paper-button raisedButton label="Click">Cancel</paper-button>
+			</a>
+			<a data-route="events" href="/events" onclick="app.helper_event.event_add();">
+				<paper-button raisedButton label="Click" disabled={{!isEventSubmittable}}>Submit</paper-button>
+			</a>
+		</div>
+	</paper-card>
+</template>
+
+<script>
+	(function () {
+		'use strict';
+		Polymer({
+			is: 'elop-event-add',
+			properties: {
+				event_title: {
+					type: String,
+					value: "",
+					notify: true
+				}
+			}
+			// app.resetCurrentPositionReset = function() {
+			// 	app.location_status = -1;
+			// 	document.getElementById('event_location_progress_label').innerHTML = 'Finding Location Coordinates';
+			// 	$('#event_location_progress #activeProgress').css("background-color", "#0f9d58");
+			// 	$('#event_location_progress').prop('indeterminate', true);
+			// }
+
+			// Need to run when active: document.getElementById("event-length").innerHTML = ''; from below
+			// page('/event_add', scrollToTop, function() {
+			// 	app.route = 'event_add';
+			// 	app.event_length = 0;
+			// 	document.getElementById("event-length").innerHTML = '';
+			// 	app.getCurrentPositionForEvent();
+			// });
+
+			// This one too:
+			//app.getCurrentPositionForEvent();
+
+			// app.getCurrentPositionForEvent = function() {
+			// 	var startPos, mapElement, map_object;
+			// 	var geoSuccess = function(position) {
+			// 		startPos = position;
+			// 		$('#event_location_progress').removeAttr('indeterminate');
+			// 		document.getElementById('event_location_progress').value = '100';
+			// 		document.getElementById('event_location_progress_label').innerHTML = 'Location Found, Using current location for event';
+			// 		app.location_latitude = startPos.coords.latitude;
+			// 		app.location_longitude = startPos.coords.longitude;
+			// 		app.location_status = 4;
+			// 		map_object = { width: "100%", height: "350px", center: app.location_latitude+"_"+app.location_longitude, pins: app.location_latitude+"_"+app.location_longitude };
+			// 		document.getElementById("event_add_location").innerHTML = app.generator.generateHtml("map", map_object);
+			// 	};
+			// 	var geoError = function(error) {
+			// 		app.location_status = error.code;
+			// 		if (error.code == 0) {
+			// 			document.getElementById('event_location_progress_label').innerHTML = 'Location Not Found (unknown error)';
+			// 		} else if (error.code == 1) {
+			// 			document.getElementById('event_location_progress_label').innerHTML = '<a href="https://www.google.com/#q=how+to+allow+access+to+current+location" target="_blank">Location Not Found (permission denied), You must allow access to location</a>';
+			// 		} else if (error.code == 2) {
+			// 			document.getElementById('event_location_progress_label').innerHTML = 'Location Not Found (position unavailable (error response from location provider))';
+			// 		} else if (error.code == 3) {
+			// 			document.getElementById('event_location_progress_label').innerHTML = 'Location Not Found (timed out)';
+			// 		} else {
+			// 			document.getElementById('event_location_progress_label').innerHTML = 'Location Not Found (other error:'+error.code+')';
+			// 		}
+			// 		$('#event_location_progress').removeAttr('indeterminate');
+			// 		document.getElementById('event_location_progress').value = '100';
+			// 		$('#event_location_progress #activeProgress').css("background-color", "#f44336");
+			// 	};
+			// 	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+			// }
+		});
+	})();
+</script>
+</dom-module>

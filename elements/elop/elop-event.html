@@ -24,6 +24,10 @@
 		Polymer({
 			is: 'elop-event',
 			properties: {
+				current_title: {
+					type: String,
+					value: ""
+				},
 				current_time: {
 					type: String,
 					value: ""
@@ -43,7 +47,7 @@
 				getTimeLength: {
 					type: String,
 					computed: "computeTimeLength(current_length)"
-				},
+				}
 			},
 			computeTimeLength: function(current_length) {
 				var length_in_hours = current_length/60;

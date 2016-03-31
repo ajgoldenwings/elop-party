@@ -54,52 +54,10 @@
 			<div class="content">
 				<iron-pages attr-for-selected="data-route" selected="{{route}}">
 					<section data-route="event">
-						<elop-event
-							current_time="{{event_current_time}}"
-							current_timeto="{{event_current_timeto}}"
-							current_promoter="{{event_current_promoter}}"
-							current_length="{{event_current_length}}"></elop-event>
+						<elop-event current_title="{{event_current_title}}" current_time="{{event_current_time}}" current_timeto="{{event_current_timeto}}" current_promoter="{{event_current_promoter}}" current_length="{{event_current_length}}"></elop-event>
 					</section>
 					<section data-route="event_add">
-						<paper-card heading="Add Event">
-							<div class="card-content">
-								<paper-input label="Event Title" id="event-title-paper-input" value="{{event_title_paper_input}}" error-message="At least 5 characters." class="invalid" maxlength="25" minlength="5" char-counter required onkeyup="eventAdd_validate()"></paper-input>
-
-								<br><br>
-
-								<section onclick="clickHandler(event)" class="center">
-									<a onclick="app.generateTimes();">
-										<paper-button data-dialog="eventtimes">
-											<iron-icon icon="schedule"></iron-icon><span>Start Time: </span><div id="event-time" class="inline"></div>
-										</paper-button>
-									</a>
-								</section>
-
-								<section onclick="clickHandler(event)" class="center">
-									<paper-button data-dialog="eventlengths">
-										<iron-icon icon="image:timer"></iron-icon><span>Event Length: </span><div id="event-length" class="inline"></div>
-									</paper-button>
-								</section>
-
-								<br><br>
-
-								<div class="vertical-section">
-									<div id="event_add_location"></div>
-									<paper-progress id="event_location_progress" indeterminate></paper-progress>
-									<div id="event_location_progress_label" class="right" style="font-size: 12px;">Finding Location Coordinates</div>
-								</div>
-
-								<br>
-							</div>
-							<div class="card-actions">
-								<a data-route="events" href="/events" onclick="document.getElementById('event-title-paper-input').value='';app.event_title_validate();">
-									<paper-button raisedButton label="Click">Cancel</paper-button>
-								</a>
-								<a data-route="events" href="/events" onclick="app.helper_event.event_add();">
-									<paper-button raisedButton label="Click" disabled={{!isEventSubmittable}}>Submit</paper-button>
-								</a>
-							</div>
-						</paper-card>
+						<elop-event-add event_title="{{event_title_paper_input}}"></elop-event-add>
 					</section>
 					<section data-route="events">
 						<elop-event-list></elop-event-list>
