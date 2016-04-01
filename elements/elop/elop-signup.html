@@ -1,0 +1,57 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../styles/shared-styles.html">
+
+<dom-module id="elop-signup">
+
+<template>
+	<style is="custom-style" include="shared-styles"></style>
+
+	<paper-card heading="Sign Up">
+		<div class="card-content">
+			<paper-input placeholder="Username" id="signup-username-paper-input" value="{{signup_username_paper}}" error="Enter Your Username" class="invalid" invalid required></paper-input>
+			<paper-input placeholder="Password" id="signup-password-paper-input" value="{{signup_password_paper}}" error="Enter Your Password" type="password" class="invalid" invalid required></paper-input>
+			<paper-input placeholder="Verify Password" id="signup-verify-password-paper-input" value="{{signup_verify_password_paper}}" error="Verify Your Password" type="password" class="invalid" invalid required></paper-input>
+		</div>
+		<div class="card-actions">
+			<a data-route="signup_Action" href="/signup_Action"><paper-button raisedButton label="Click">Sign Up</paper-button></a>
+		</div>
+	</paper-card>
+	<paper-card>
+		<div class="card-actions">
+			<a data-route="signon" href="/signon"><paper-button raisedButton label="Click">Sign On</paper-button></a>
+			<a data-route="welcome" href="/welcome"><paper-button raisedButton label="Click">Not Now</paper-button></a>
+		</div>
+	</paper-card>
+</template>
+
+<script>
+	(function () {
+		'use strict';
+		Polymer({
+			is: 'elop-signup',
+			properties: {
+				signup_username_paper: {
+					type: String,
+					value: "",
+					notify: true
+				},
+				signup_password_paper: {
+					type: String,
+					value: "",
+					notify: true
+				},
+				signup_verify_password_paper: {
+					type: String,
+					value: "",
+					notify: true
+				}
+			},
+			toggle: function() {
+				this.$.collapse.toggle();
+				this.$.collapse_button.toggle();
+			}
+		});
+	})();
+</script>
+</dom-module>

@@ -22,166 +22,137 @@
 <span id="browser-sync-binding"></span>
 
 <template is="dom-bind" id="app">
-	<paper-drawer-panel force-narrow id="paperDrawerPanel">
-		<paper-scroll-header-panel drawer fixed>
-			<paper-toolbar id="drawerToolbar">
-				<object class="icon-menu" type="image/svg+xml" data="./images/icons/Icons-Logo.svg"></object><span class="paper-font-title">Menu</span>
-			</paper-toolbar>
+<paper-drawer-panel force-narrow id="paperDrawerPanel">
+	<paper-scroll-header-panel drawer fixed>
+		<paper-toolbar id="drawerToolbar">
+			<object class="icon-menu" type="image/svg+xml" data="./images/icons/Icons-Logo.svg"></object><span class="paper-font-title">Menu</span>
+		</paper-toolbar>
 
-			<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-				<a data-route="home" href="/" on-click="onDataRouteClick" hidden={{isNotLoggedIn}}><iron-icon icon="home"></iron-icon><span>Events</span></a>
-				<a data-route="map" href="/map" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="maps:map"></iron-icon><span>Map</span></a>
-				<a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="settings"></iron-icon><span>Settings</span></a>
-				<a data-route="more" href="/more" on-click="onDataRouteClick"><iron-icon icon="more-horiz"></iron-icon><span>More</span></a>
-				<a data-route="signon" href="/signon" on-click="onDataRouteClick" hidden={{!isNotLoggedIn}}><iron-icon icon="supervisor-account"></iron-icon><span>Sign On</span></a>
-			</paper-menu>
+		<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
+			<a data-route="home" href="/" on-click="onDataRouteClick" hidden={{isNotLoggedIn}}><iron-icon icon="home"></iron-icon><span>Events</span></a>
+			<a data-route="map" href="/map" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="maps:map"></iron-icon><span>Map</span></a>
+			<a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="settings"></iron-icon><span>Settings</span></a>
+			<a data-route="more" href="/more" on-click="onDataRouteClick"><iron-icon icon="more-horiz"></iron-icon><span>More</span></a>
+			<a data-route="signon" href="/signon" on-click="onDataRouteClick" hidden={{!isNotLoggedIn}}><iron-icon icon="supervisor-account"></iron-icon><span>Sign On</span></a>
+		</paper-menu>
 
-			<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]" style="position:absolute;bottom:1em;width:100%;" hidden={{isNotLoggedIn}}>
-				<a data-route="logout" href="/logout" on-click="onDataRouteClick"><iron-icon icon="supervisor-account"></iron-icon><span>Log Off</span></a>
-			</paper-menu>
-		</paper-scroll-header-panel>
+		<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]" style="position:absolute;bottom:1em;width:100%;" hidden={{isNotLoggedIn}}>
+			<a data-route="logout" href="/logout" on-click="onDataRouteClick"><iron-icon icon="supervisor-account"></iron-icon><span>Log Off</span></a>
+		</paper-menu>
+	</paper-scroll-header-panel>
 
-		<paper-scroll-header-panel main fixed>
+	<paper-scroll-header-panel main fixed>
 
-			<paper-toolbar id="mainToolbar">
-				<paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-				<span class="title alignleft">Elop Party</span>
-				<section onclick="clickHandler(event)">
-					<paper-icon-button icon="more-vert" data-dialog="buttonspopup"></paper-icon-button>
+		<paper-toolbar id="mainToolbar">
+			<paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+			<span class="title alignleft">Elop Party</span>
+			<section onclick="clickHandler(event)">
+				<paper-icon-button icon="more-vert" data-dialog="buttonspopup"></paper-icon-button>
+			</section>
+		</paper-toolbar>
+
+		<div class="content">
+			<iron-pages attr-for-selected="data-route" selected="{{route}}">
+				<section data-route="event">
+					<elop-event current_title="{{event_current_title}}" current_time="{{event_current_time}}" current_timeto="{{event_current_timeto}}" current_promoter="{{event_current_promoter}}" current_length="{{event_current_length}}"></elop-event>
 				</section>
-			</paper-toolbar>
+				<section data-route="event_add">
+					<elop-event-add event_title="{{event_title_paper_input}}"></elop-event-add>
+				</section>
+				<section data-route="events">
+					<elop-event-list></elop-event-list>
+				</section>
+				<section data-route="loading">
+					<paper-card heading="Loading"><div class="card-content">Please wait...</div></paper-card>
+				</section>
+				<section data-route="logingout">
+					<paper-card heading="Logging Out"><div class="card-content">Please wait...</div></paper-card>
+				</section>
+				<section data-route="map">
+					<elop-event-map></elop-event-map>
+				</section>
+				<section data-route="more">
+					<elop-about></elop-about>
+				</section>
+				<section data-route="settings">
+					<elop-settings verify_password_paper="{{verify_password_paper_input}}" change_password_paper="{{change_password_paper_input}}" change_verify_password_paper="{{change_verify_password_paper_input}}"></elop-settings>
+				</section>
+				<section data-route="signon">
+					<elop-signon signon_username_paper="{{signon_username_paper_input}}" signon_password_paper="{{signon_password_paper_input}}"></elop-signon>
+				</section>
+				<section data-route="signup">
+					<elop-signup signup_username_paper="{{signup_username_paper_input}}" signup_password_paper="{{signup_password_paper_input}}" signup_verify_password_paper="{{signup_verify_password_paper_input}}"></elop-signup>
+				</section>
+			</iron-pages>
+		</div>
 
-			<div class="content">
-				<iron-pages attr-for-selected="data-route" selected="{{route}}">
-					<section data-route="event">
-						<elop-event current_title="{{event_current_title}}" current_time="{{event_current_time}}" current_timeto="{{event_current_timeto}}" current_promoter="{{event_current_promoter}}" current_length="{{event_current_length}}"></elop-event>
-					</section>
-					<section data-route="event_add">
-						<elop-event-add event_title="{{event_title_paper_input}}"></elop-event-add>
-					</section>
-					<section data-route="events">
-						<elop-event-list></elop-event-list>
-					</section>
-					<section data-route="loading">
-						<paper-card heading="Loading"><div class="card-content">Please wait...</div></paper-card>
-					</section>
-					<section data-route="logingout">
-						<paper-card heading="Logging Out"><div class="card-content">Please wait...</div></paper-card>
-					</section>
-					<section data-route="map">
-						<elop-event-map></elop-event-map>
-					</section>
-					<section data-route="more">
-						<elop-about></elop-about>
-					</section>
-					<section data-route="settings">
-						<elop-settings verify_password_paper="{{verify_password_paper_input}}" change_password_paper="{{change_password_paper_input}}" change_verify_password_paper="{{change_verify_password_paper_input}}"></elop-settings>
-					</section>
-					<section data-route="signon">
-						<paper-card heading="Sign On">
-							<div class="card-content">
-								<paper-input placeholder="Username" id="signon-username-paper-input" value="{{signon_username_paper_input}}" error="Enter Your Username" class="invalid" invalid required></paper-input>
-								<paper-input placeholder="Password" id="signon-password-paper-input" value="{{signon_password_paper_input}}" error="Enter Your Password" type="password" class="invalid" invalid required></paper-input>
-							</div>
-							<div class="card-actions">
-								<a data-route="signon_Action" href="/signon_Action"><paper-button raisedButton label="Click">Sign On</paper-button></a>
-							</div>
-						</paper-card>
-						<paper-card>
-							<div class="card-content">
-								<a data-route="signup" href="/signup"><paper-button raisedButton label="Click">Sign Up</paper-button></a>
-								<a data-route="welcome" href="/welcome"><paper-button raisedButton label="Click">Not Now</paper-button></a>
-							</div>
-						</paper-card>
-					</section>
-					<section data-route="signup">
-						<paper-card heading="Sign Up">
-							<div class="card-content">
-								<paper-input placeholder="Username" id="signup-username-paper-input" value="{{signup_username_paper_input}}" error="Enter Your Username" class="invalid" invalid required></paper-input>
-								<paper-input placeholder="Password" id="signup-password-paper-input" value="{{signup_password_paper_input}}" error="Enter Your Password" type="password" class="invalid" invalid required></paper-input>
-								<paper-input placeholder="Verify Password" id="signup-verify-password-paper-input" value="{{signup_verify_password_paper_input}}" error="Verify Your Password" type="password" class="invalid" invalid required></paper-input>
-							</div>
-							<div class="card-actions">
-								<a data-route="signup_Action" href="/signup_Action"><paper-button raisedButton label="Click">Sign Up</paper-button></a>
-							</div>
-						</paper-card>
-						<paper-card>
-							<div class="card-actions">
-								<a data-route="signon" href="/signon"><paper-button raisedButton label="Click">Sign On</paper-button></a>
-								<a data-route="signon_withoutuser" href="/signon_withoutuser"><paper-button raisedButton label="Click">Not Now</paper-button></a>
-							</div>
-						</paper-card>
-					</section>
-				</iron-pages>
-			</div>
-
-			<script>
-				function clickHandler(e) {
-					var button = e.target;
-					while (!button.hasAttribute('data-dialog') && button !== document.body) {
-						button = button.parentElement;
-					}
-
-					if (!button.hasAttribute('data-dialog')) {
-						return;
-					}
-
-					var id = button.getAttribute('data-dialog');
-					var dialog = document.getElementById(id);
-					if (dialog) {
-						dialog.open();
-					}
+		<script>
+			function clickHandler(e) {
+				var button = e.target;
+				while (!button.hasAttribute('data-dialog') && button !== document.body) {
+					button = button.parentElement;
 				}
-				function eventAdd_validate() {
-					if (document.getElementById("event-title-paper-input").validate()&&app.location_status==4&&app.event_length>0&&app.event_date!='') {
-						app.isEventSubmittable=true;
-						return true;
-					}
-					else {
-						app.isEventSubmittable=false;
-						app.event_title_validate();
-						return false;
-					}
-				}
-				function setLength(length) {
-					var length_in_hours = length/60;
-					var length_text = length_in_hours==1?' hour':' hours';
-					app.event_length=length;
-					document.getElementById("event-length").innerHTML = length_in_hours + length_text;
-					eventAdd_validate();
-				}
-				function setTime(date,time) {
-					app.event_date=date;
-					document.getElementById("event-time").innerHTML = time;
-					eventAdd_validate();
-				}
-			</script>
-			<paper-dialog id="eventlengths" with-backdrop>
-				<h2>Event Length</h2>
-				<paper-dialog-scrollable>
-					<a onclick="setLength(60)"><paper-button dialog-confirm>1 Hour</paper-button></a>
-					<a onclick="setLength(90)"><paper-button dialog-confirm>1.5 Hours</paper-button></a>
-					<a onclick="setLength(120)"><paper-button dialog-confirm>2 Hours</paper-button></a>
-					<a onclick="setLength(150)"><paper-button dialog-confirm>2.5 Hours</paper-button></a>
-					<a onclick="setLength(180)"><paper-button dialog-confirm>3 Hours</paper-button></a>
-					<a onclick="setLength(210)"><paper-button dialog-confirm>3.5 Hours</paper-button></a>
-					<a onclick="setLength(240)"><paper-button dialog-confirm>4 Hours</paper-button></a>
-					<a onclick="setLength(270)"><paper-button dialog-confirm>4.5 Hours</paper-button></a>
-					<a onclick="setLength(300)"><paper-button dialog-confirm>5 Hours</paper-button></a>
-				</paper-dialog-scrollable>
-				<hr>
-				<div suffix><small>Up to 5 hours</small><br><small>30 Minute Increments</small></div>
-			</paper-dialog>
-			<paper-dialog id="eventtimes" with-backdrop>
-				<h2>Event Start Time</h2><paper-dialog-scrollable><div id="eventTimes"></div></paper-dialog-scrollable>
-				<hr><div suffix><small>Times within 12 hours</small><br><small>30 Minute Increments</small></div>
-			</paper-dialog>
-			<elop-dialog-action loggedin="{{isNotLoggedInWithUser}}" username="{{elop_username}}"></elop-dialog-action>
-		</paper-scroll-header-panel>
-	</paper-drawer-panel>
 
-	<!-- next block to enable Service Worker support (1/2) -->
-	<!--<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline."></paper-toast><platinum-sw-register auto-register clients-claim skip-waiting on-service-worker-installed="displayInstalledToast"><platinum-sw-cache default-cache-strategy="fastest" cache-config-file="cache-config.json"></platinum-sw-cache></platinum-sw-register>-->
+				if (!button.hasAttribute('data-dialog')) {
+					return;
+				}
+
+				var id = button.getAttribute('data-dialog');
+				var dialog = document.getElementById(id);
+				if (dialog) {
+					dialog.open();
+				}
+			}
+			function eventAdd_validate() {
+				if (document.getElementById("event-title-paper-input").validate()&&app.location_status==4&&app.event_length>0&&app.event_date!='') {
+					app.isEventSubmittable=true;
+					return true;
+				}
+				else {
+					app.isEventSubmittable=false;
+					app.event_title_validate();
+					return false;
+				}
+			}
+			function setLength(length) {
+				var length_in_hours = length/60;
+				var length_text = length_in_hours==1?' hour':' hours';
+				app.event_length=length;
+				document.getElementById("event-length").innerHTML = length_in_hours + length_text;
+				eventAdd_validate();
+			}
+			function setTime(date,time) {
+				app.event_date=date;
+				document.getElementById("event-time").innerHTML = time;
+				eventAdd_validate();
+			}
+		</script>
+		<paper-dialog id="eventlengths" with-backdrop>
+			<h2>Event Length</h2>
+			<paper-dialog-scrollable>
+				<a onclick="setLength(60)"><paper-button dialog-confirm>1 Hour</paper-button></a>
+				<a onclick="setLength(90)"><paper-button dialog-confirm>1.5 Hours</paper-button></a>
+				<a onclick="setLength(120)"><paper-button dialog-confirm>2 Hours</paper-button></a>
+				<a onclick="setLength(150)"><paper-button dialog-confirm>2.5 Hours</paper-button></a>
+				<a onclick="setLength(180)"><paper-button dialog-confirm>3 Hours</paper-button></a>
+				<a onclick="setLength(210)"><paper-button dialog-confirm>3.5 Hours</paper-button></a>
+				<a onclick="setLength(240)"><paper-button dialog-confirm>4 Hours</paper-button></a>
+				<a onclick="setLength(270)"><paper-button dialog-confirm>4.5 Hours</paper-button></a>
+				<a onclick="setLength(300)"><paper-button dialog-confirm>5 Hours</paper-button></a>
+			</paper-dialog-scrollable>
+			<hr>
+			<div suffix><small>Up to 5 hours</small><br><small>30 Minute Increments</small></div>
+		</paper-dialog>
+		<paper-dialog id="eventtimes" with-backdrop>
+			<h2>Event Start Time</h2><paper-dialog-scrollable><div id="eventTimes"></div></paper-dialog-scrollable>
+			<hr><div suffix><small>Times within 12 hours</small><br><small>30 Minute Increments</small></div>
+		</paper-dialog>
+		<elop-dialog-action loggedin="{{isNotLoggedInWithUser}}" username="{{elop_username}}"></elop-dialog-action>
+	</paper-scroll-header-panel>
+</paper-drawer-panel>
+
+<!-- next block to enable Service Worker support (1/2) -->
+<!--<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline."></paper-toast><platinum-sw-register auto-register clients-claim skip-waiting on-service-worker-installed="displayInstalledToast"><platinum-sw-cache default-cache-strategy="fastest" cache-config-file="cache-config.json"></platinum-sw-cache></platinum-sw-register>-->
 
 </template>
 
