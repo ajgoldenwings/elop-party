@@ -62,39 +62,20 @@
 					<section data-route="events">
 						<elop-event-list></elop-event-list>
 					</section>
-					<section data-route="loading"><paper-card heading="Loading"><div class="card-content">Please wait...</div></paper-card></section>
-					<section data-route="logingout"><paper-card heading="Logging Out"><div class="card-content">Please wait...</div></paper-card></section>
+					<section data-route="loading">
+						<paper-card heading="Loading"><div class="card-content">Please wait...</div></paper-card>
+					</section>
+					<section data-route="logingout">
+						<paper-card heading="Logging Out"><div class="card-content">Please wait...</div></paper-card>
+					</section>
 					<section data-route="map">
-						<paper-card class='map'>
-							<div class="card-content">
-								<div class="title"><div class="size-big">Event Map</div><div class="size-small">Centered Push Pin is Your Location</div></div>
-								<div class="avatar size-small">Refresh&nbsp;<paper-icon-button icon="refresh" style="width: 32px;height: 32px;display: flex;align-items: center;justify-content: center;" onclick="clickHandler(app.helper_map.show_map())"></paper-icon-button></div>
-								<div style="clear: both;"></div>
-							</div>
-							<div id="map_event_list"></div>
-						</paper-card>
+						<elop-event-map></elop-event-map>
 					</section>
 					<section data-route="more">
 						<elop-about></elop-about>
 					</section>
 					<section data-route="settings">
-						<paper-card heading="Settings">
-							<div class="card-content">
-								<div hidden={{isNotLoggedIn}}>
-									<a onclick="app.hideSettingsChangePassword?app.hideSettingsChangePassword=false:app.hideSettingsChangePassword=true;app.verify_password_paper_input='';app.change_password_paper_input='';app.change_verify_password_paper_input='';"><h3>Change Password</h3></a>
-									<div hidden={{hideSettingsChangePassword}}>
-										<paper-input placeholder="Old Password" id="verify-password-paper-input" value="{{verify_password_paper_input}}" error="Enter Your Old Password" type="password" class="invalid" invalid required></paper-input>
-										<paper-input placeholder="New Password" id="change-password-paper-input" value="{{change_password_paper_input}}" error="Enter Your New Password" type="password" class="invalid" invalid required></paper-input>
-										<paper-input placeholder="Verify New Password" id="change-verify-password-paper-input" value="{{change_verify_password_paper_input}}" error="Verify Your New Password" type="password" class="invalid" invalid required></paper-input>
-									</div>
-								</div>
-							</div>
-							<div class="card-actions">
-								<div hidden={{isNotLoggedIn}}>
-									<a data-route="change_Password_Action" href="/change_Password_Action" hidden={{hideSettingsChangePassword}}><paper-button label="Click">Change Password</paper-button></a>
-								</div>
-							</div>
-						</paper-card>
+						<elop-settings verify_password_paper="{{verify_password_paper_input}}" change_password_paper="{{change_password_paper_input}}" change_verify_password_paper="{{change_verify_password_paper_input}}"></elop-settings>
 					</section>
 					<section data-route="signon">
 						<paper-card heading="Sign On">
@@ -130,19 +111,6 @@
 								<a data-route="signon_withoutuser" href="/signon_withoutuser"><paper-button raisedButton label="Click">Not Now</paper-button></a>
 							</div>
 						</paper-card>
-					</section>
-					<section data-route="users">
-						<paper-material elevation="1">
-							<h2 class="page-title">Users</h2><p>This is the users section</p><a href="/users/Rob">Rob</a>
-						</paper-material>
-						<paper-material elevation="1">
-							<h2 class="page-title">Users</h2><p>More users to come</p>
-						</paper-material>
-					</section>
-					<section data-route="user-info">
-						<paper-material elevation="1">
-							<h2 class="page-title">User:<span>{{params.name}}</span></h2><div>This is <span>{{params.name}}</span>'s section</div>
-						</paper-material>
 					</section>
 				</iron-pages>
 			</div>

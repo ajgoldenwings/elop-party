@@ -40,12 +40,6 @@
 			app.route = 'baasbox';
 		});
 
-		page('/change_Password_Action', scrollToTop, function() {
-			app.helper_user.change_password();
-			app.route = 'settings';
-
-		});
-
 		page('/contact', scrollToTop, function() {
 			app.route = 'contact';
 		});
@@ -59,6 +53,7 @@
 		page('/event_add', scrollToTop, function() {
 			app.route = 'event_add';
 			app.event_length = 0;
+			document.getElementById("event-time").innerHTML = '';
 			document.getElementById("event-length").innerHTML = '';
 			app.getCurrentPositionForEvent();
 		});
