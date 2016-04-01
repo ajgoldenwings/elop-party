@@ -1,8 +1,12 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/swipe-pages-master/swipe-pages.html">
+<link rel="import" href="../../styles/shared-styles.html">
 
 <dom-module id="elop-swipe-pages">
 <template>
+
+<style is="custom-style" include="shared-styles"></style>
+
 <style>
 	#welcome_container {
 		display: none;
@@ -54,6 +58,10 @@
 		position:absolute;
 		right:0;
 	}
+	.getStarted {
+		border: 2px solid #9A6ED6;
+		background: transparent;
+	}
 </style>
 <swipe-pages selected="0" threshold="0.35" id="welcome_container">
 	<swipe-page>
@@ -61,13 +69,13 @@
 			<div class="welcome_page_content">
 				<div class="welcome_page_content_top"><h2>*<div style="color: #9A6ED6;display:inline-block;">**</div></h2></div>
 				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">Picture of TKE SCSU<br>Nov 15</div>
+					<div class="welcome_page_content_footer_left left">Picture of Heather and Rina<br>Nov 2015</div>
 					<div class="welcome_page_content_footer_right right"></div>
 				</div>
 				<div class="welcome_page_content_bottom">
 					<h2>Make events the hassle-free way. Have the app handle spreading the word out for you.</h2>
 					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;document.getElementById('paperDrawerPanel').style.display = 'inline';document.getElementById('welcome_container').style.display = 'none';">
-						<paper-button raisedButton label="Click">Get Started</paper-button>
+						<paper-button raisedButton label="Click" class="getStarted">Get Started</paper-button>
 					</a>
 				</div>
 			</div>
@@ -78,15 +86,13 @@
 			<div class="welcome_page_content">
 				<div class="welcome_page_content_top"><h2><div style="color: #9A6ED6;display:inline-block;">*</div>*<div style="color: #9A6ED6;display:inline-block;">*</div></h2></div>
 				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">Picture of Heather and Rina<br>Nov 15</div>
+					<div class="welcome_page_content_footer_left left">Picture of John and William<br>Jul 2014</div>
 					<div class="welcome_page_content_footer_right right"></div>
 				</div>
 				<div class="welcome_page_content_bottom">
 					<h2>Seek out an adventure. Live it up to the fullest. Choose the type of event you want be at.</h2>
-					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;
-							document.getElementById('paperDrawerPanel').style.display = 'inline';
-							document.getElementById('welcome_container').style.display = 'none';">
-						<paper-button raisedButton label="Click">Get Started</paper-button>
+					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;document.getElementById('paperDrawerPanel').style.display = 'inline';document.getElementById('welcome_container').style.display = 'none';">
+						<paper-button raisedButton label="Click" class="getStarted">Get Started</paper-button>
 					</a>
 				</div>
 			</div>
@@ -97,15 +103,13 @@
 			<div class="welcome_page_content">
 				<div class="welcome_page_content_top"><h2><div style="color: #9A6ED6;display:inline-block;">**</div>*</h2></div>
 				<div class="welcome_page_content_footer">
-					<div class="welcome_page_content_footer_left left">Picture of TKE SCSU<br>Nov 15</div>
+					<div class="welcome_page_content_footer_left left">Picture of TKE SCSU<br>Aug 2015</div>
 					<div class="welcome_page_content_footer_right right"></div>
 				</div>
 				<div class="welcome_page_content_bottom">
 					<h2>Accurately see how popular an event will be with who is currently at and will be at the event.</h2>
-					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;
-							document.getElementById('paperDrawerPanel').style.display = 'inline';
-							document.getElementById('welcome_container').style.display = 'none';">
-						<paper-button raisedButton label="Click">Get Started</paper-button>
+					<a data-route="signon" href="/signon" onclick="localStorage.elop_welcomed = true;document.getElementById('paperDrawerPanel').style.display = 'inline';document.getElementById('welcome_container').style.display = 'none';">
+						<paper-button raisedButton label="Click" class="getStarted">Get Started</paper-button>
 					</a>
 				</div>
 			</div>

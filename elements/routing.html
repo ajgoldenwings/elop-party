@@ -110,15 +110,6 @@
 			app.helper_user.signup();
 		});
 
-		page('/users', scrollToTop, function() {
-			app.route = 'users';
-		});
-
-		page('/users/:name', scrollToTop, function(data) {
-			app.route = 'user-info';
-			app.params = data.params;
-		});
-
 		// add #! before urls
 		page({
 			hashbang: true
