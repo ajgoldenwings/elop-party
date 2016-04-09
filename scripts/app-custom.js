@@ -1,13 +1,15 @@
+var appCustomJS = true;
+
 (function(document) {
 	'use strict';
 
 	// Initialize App
 	// if(typeof app.route==='undefined'){app.route='loading';}// if(typeof app.isNotLoggedIn==='undefined'){app.isNotLoggedIn=true;}// if(typeof app.isNotLoggedInWithUser==='undefined'){app.isNotLoggedInWithUser=true;}// if(typeof app.isEventSubmittable==='undefined'){app.isEventSubmittable=false;}// if(typeof app.aboutHidden==='undefined'){app.aboutHidden=true;}// if(typeof app.contactHidden==='undefined'){app.contactHidden=true;}// if(typeof app.contentRightsHidden==='undefined'){app.contentRightsHidden=true;}// if(typeof app.hideSettingsChangePassword==='undefined'){app.hideSettingsChangePassword=true;}// if(typeof app.hideSignUp==='undefined'){app.hideSignUp=true;}// if(typeof app.elop_events_loaded==='undefined'){app.elop_events_loaded=false;}// if(typeof app.elop_username==='undefined'){app.elop_username='';}// if(typeof app.permissionStatus_geolocation==='undefined'){app.permissionStatus_geolocation='';}
 
-	navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
-		app.permissionStatus_geolocation = permissionStatus.state;
-		permissionStatus.onchange = function() {app.permissionStatus_geolocation = this.state;};
-	}); // "granted", "denied", "prompt"
+	// navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
+	// 	app.permissionStatus_geolocation = permissionStatus.state;
+	// 	permissionStatus.onchange = function() {app.permissionStatus_geolocation = this.state;};
+	// }); // "granted", "denied", "prompt"
 
 	// Event Add Variables
 	app.event_length = 0; // Minutes
@@ -139,5 +141,3 @@
 /*if ('serviceWorker' in navigator) {navigator.serviceWorker.register('../bower_components/cache-polyfill-master/index.js').then(function(registration) {}).catch(function(err) {console.log('ServiceWorker registration failed: ', err);});}const OFFLINE_CACHE = 'offline';const OFFLINE_URL = '../index.html';self.addEventListener('install', function(event) {const offlineRequest = new Request(OFFLINE_URL);event.waitUntil(fetch(offlineRequest).then(function(response) {return caches.open(OFFLINE_CACHE).then(function(cache) {return cache.put(offlineRequest, response);});}));});self.addEventListener('fetch', function(event) {if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {console.log('Handling fetch event for', event.request.url);event.respondWith(fetch(event.request).catch(function(e) {console.error('Fetch failed; returning offline page instead.', e);return caches.open(OFFLINE_CACHE).then(function(cache) {return cache.match(OFFLINE_URL);});}));}});*/
 
 })(document);
-
-var appCustomJS = true;
