@@ -5,6 +5,7 @@
 		constructor() { }
 
 		BaasBox_fetchCurrentUser() {
+			app.isNotLoggedIn = false;
 			BaasBox.fetchCurrentUser().done(function(res) {
 				app.elop_username = res['data'].user.name;
 				if (app.route == 'signon' || app.route == 'loading') {
@@ -14,11 +15,9 @@
 					app.route = 'events';
 				}
 				app.isNotLoggedIn = false;
-				app.isNotLoggedInWithUser = false;
 			}).fail(function(error) {
 				app.route = 'signon';
 				app.isNotLoggedIn = true;
-				app.isNotLoggedInWithUser = true;
 			});
 		}
 
@@ -43,7 +42,6 @@
 		login() {
 			BaasBox.login(app.signon_username_paper_input, app.signon_password_paper_input).done(function (user) {
 				app.isNotLoggedIn = false;
-				app.isNotLoggedInWithUser = false;
 				app.signon_username_paper_input = '';
 				app.signon_password_paper_input = '';
 				if (!app.elop_events_loaded) {
@@ -56,7 +54,6 @@
 			}).fail(function (err) {
 				console.log("error ", err);
 				app.isNotLoggedIn = true;
-				app.isNotLoggedInWithUser = true;
 				app.signon_username_paper_input = '';
 				app.signon_password_paper_input = '';
 				app.route = 'signon';
@@ -71,7 +68,6 @@
 			}).fail(function (error) {
 			});
 			app.isNotLoggedIn = true;
-			app.isNotLoggedInWithUser = true;
 		}
 
 		signup() {
@@ -82,7 +78,6 @@
 					app.signup_password_paper_input = ''; // Remove Passwords
 					app.signup_verify_password_paper_input = '';
 					app.isNotLoggedIn = false;
-					app.isNotLoggedInWithUser = false;
 					if (!app.elop_events_loaded) {
 						app.helper_event.events_load();
 					}
@@ -92,7 +87,6 @@
 					app.signup_password_paper_input = ''; // Remove Passwords
 					app.signup_verify_password_paper_input = '';
 					app.isNotLoggedIn = true;
-					app.isNotLoggedInWithUser = true;
 					app.route = 'signon';
 				});
 			}

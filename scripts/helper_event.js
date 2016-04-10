@@ -101,11 +101,11 @@
 				if (res.length == 0){
 					$( "#events_load_more_past_card" ).remove();
 					eventsHTML += '<paper-card heading="No more past events found">';
-					if (!app.isNotLoggedInWithUser) {
+					if (!app.isNotLoggedIn) {
 						eventsHTML += '<div class="card-content style-scope elop-events">Can&#39;t find the event you want, go ahead and add an event.<br><br></div>';
-					} if (app.isNotLoggedInWithUser) {
+					} if (app.isNotLoggedIn) {
 						eventsHTML += '<div class="card-content style-scope elop-events">You may view and add events if you sign up.</div>';
-					} if (!app.isNotLoggedInWithUser) {
+					} if (!app.isNotLoggedIn) {
 						eventsHTML += '<div class="card-actions style-scope elop-events">' +
 						'<a data-route="event_add" href="/event_add"><paper-button>Add Event</paper-button></a></div>';
 					}

@@ -31,11 +31,11 @@
 		</paper-toolbar>
 
 		<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-			<a data-route="home" href="/" on-click="onDataRouteClick" hidden={{isNotLoggedIn}}><iron-icon icon="home"></iron-icon><span>Events</span></a>
-			<a data-route="map" href="/map" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="maps:map"></iron-icon><span>Map</span></a>
-			<a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden={{isNotLoggedInWithUser}}><iron-icon icon="settings"></iron-icon><span>Settings</span></a>
+			<a data-route="home" href="/" on-click="onDataRouteClick" hidden="{{isNotLoggedIn}}"><iron-icon icon="home"></iron-icon><span>Events</span></a>
+			<a data-route="map" href="/map" on-click="onDataRouteClick" hidden="{{isNotLoggedIn}}"><iron-icon icon="maps:map"></iron-icon><span>Map</span></a>
+			<a data-route="settings" href="/settings" on-click="onDataRouteClick" hidden="{{isNotLoggedIn}}"><iron-icon icon="settings"></iron-icon><span>Settings</span></a>
 			<a data-route="more" href="/more" on-click="onDataRouteClick"><iron-icon icon="more-horiz"></iron-icon><span>More</span></a>
-			<a data-route="signon" href="/signon" on-click="onDataRouteClick" hidden={{!isNotLoggedIn}}><iron-icon icon="supervisor-account"></iron-icon><span>Sign On</span></a>
+			<a data-route="signon" href="/signon" on-click="onDataRouteClick" hidden="{{!isNotLoggedIn}}"><iron-icon icon="supervisor-account"></iron-icon><span>Sign On</span></a>
 		</paper-menu>
 
 		<paper-menu class="list" attr-for-selected="data-route" selected="[[route]]" style="position:absolute;bottom:1em;width:100%;" hidden={{isNotLoggedIn}}>
@@ -46,11 +46,13 @@
 	<paper-scroll-header-panel main fixed>
 
 		<paper-toolbar id="mainToolbar">
-			<paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-			<span class="title alignleft">Elop Party</span>
-			<section onclick="clickHandler(event)">
-				<paper-icon-button icon="more-vert" data-dialog="buttonspopup"></paper-icon-button>
+			<paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle hidden="{{isNotLoggedIn}}"></paper-icon-button>
+			<span class="title alignleft" hidden="{{isNotLoggedIn}}">Elop Party</span>
+			<section onclick="clickHandler(event)" hidden="{{isNotLoggedIn}}">
+				<paper-icon-button icon="more-vert" data-dialog="buttonspopup" hidden="{{isNotLoggedIn}}"></paper-icon-button>
 			</section>
+
+			<span class="center" hidden="{{!isNotLoggedIn}}"><h2>Elop Party</h2></span>
 		</paper-toolbar>
 
 		<div class="content">
@@ -149,7 +151,7 @@
 			<h2>Event Start Time</h2><paper-dialog-scrollable><div id="eventTimes"></div></paper-dialog-scrollable>
 			<hr><div suffix><small>Times within 12 hours</small><br><small>30 Minute Increments</small></div>
 		</paper-dialog>
-		<elop-dialog-action loggedin="{{isNotLoggedInWithUser}}" username="{{elop_username}}"></elop-dialog-action>
+		<elop-dialog-action loggedin="{{isNotLoggedIn}}" username="{{elop_username}}"></elop-dialog-action>
 	</paper-scroll-header-panel>
 </paper-drawer-panel>
 
