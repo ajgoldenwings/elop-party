@@ -18,7 +18,7 @@
 		</div>
 	</paper-card>
 	<paper-card>
-		<div class="card-actions">
+		<div class="card-content">
 			<a data-route="signon" href="/signon"><paper-button raisedButton label="Click">Sign On</paper-button></a>
 			<a data-route="welcome" href="/welcome"><paper-button raisedButton label="Click">Not Now</paper-button></a>
 		</div>
@@ -46,10 +46,6 @@
 					value: "",
 					notify: true
 				}
-			},
-			toggle: function() {
-				this.$.collapse.toggle();
-				this.$.collapse_button.toggle();
 			}
 		});
 	})();
