@@ -16,7 +16,6 @@
 <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 <link rel="import" href="elements/elements.html">
 
-
 <style is="custom-style" include="shared-styles"></style>
 </head>
 
@@ -96,61 +95,15 @@
 				while (!button.hasAttribute('data-dialog') && button !== document.body) {
 					button = button.parentElement;
 				}
-
 				if (!button.hasAttribute('data-dialog')) {
 					return;
 				}
-
-				var id = button.getAttribute('data-dialog');
-				var dialog = document.getElementById(id);
+				var dialog = document.getElementById(button.getAttribute('data-dialog'));
 				if (dialog) {
 					dialog.open();
 				}
 			}
-			function eventAdd_validate() {
-				if (document.getElementById("event-title-paper-input").validate()&&app.location_status==4&&app.event_length>0&&app.event_date!='') {
-					app.isEventSubmittable=true;
-					return true;
-				}
-				else {
-					app.isEventSubmittable=false;
-					app.event_title_validate();
-					return false;
-				}
-			}
-			function setLength(length) {
-				var length_in_hours = length/60;
-				var length_text = length_in_hours==1?' hour':' hours';
-				app.event_length=length;
-				document.getElementById("event-length").innerHTML = length_in_hours + length_text;
-				eventAdd_validate();
-			}
-			function setTime(date,time) {
-				app.event_date=date;
-				document.getElementById("event-time").innerHTML = time;
-				eventAdd_validate();
-			}
 		</script>
-		<paper-dialog id="eventlengths" with-backdrop>
-			<h2>Event Length</h2>
-			<paper-dialog-scrollable>
-				<a onclick="setLength(60)"><paper-button dialog-confirm>1 Hour</paper-button></a>
-				<a onclick="setLength(90)"><paper-button dialog-confirm>1.5 Hours</paper-button></a>
-				<a onclick="setLength(120)"><paper-button dialog-confirm>2 Hours</paper-button></a>
-				<a onclick="setLength(150)"><paper-button dialog-confirm>2.5 Hours</paper-button></a>
-				<a onclick="setLength(180)"><paper-button dialog-confirm>3 Hours</paper-button></a>
-				<a onclick="setLength(210)"><paper-button dialog-confirm>3.5 Hours</paper-button></a>
-				<a onclick="setLength(240)"><paper-button dialog-confirm>4 Hours</paper-button></a>
-				<a onclick="setLength(270)"><paper-button dialog-confirm>4.5 Hours</paper-button></a>
-				<a onclick="setLength(300)"><paper-button dialog-confirm>5 Hours</paper-button></a>
-			</paper-dialog-scrollable>
-			<hr>
-			<div suffix><small>Up to 5 hours</small><br><small>30 Minute Increments</small></div>
-		</paper-dialog>
-		<paper-dialog id="eventtimes" with-backdrop>
-			<h2>Event Start Time</h2><paper-dialog-scrollable><div id="eventTimes"></div></paper-dialog-scrollable>
-			<hr><div suffix><small>Times within 12 hours</small><br><small>30 Minute Increments</small></div>
-		</paper-dialog>
 		<elop-dialog-action loggedin="{{isNotLoggedIn}}" username="{{elop_username}}"></elop-dialog-action>
 	</paper-scroll-header-panel>
 </paper-drawer-panel>
