@@ -18,15 +18,23 @@ app.addEventListener('dom-change', function() {
 	/*console.log('Elop Party ready.');*/
 });
 
+app.welcomeHide = function() {
+	document.getElementById("paperDrawerPanel").style.display = 'block';
+	document.getElementById("welcome_container").style.display = 'none';
+}
+
+app.welcomeShow = function() {
+	document.getElementById("paperDrawerPanel").style.display = 'none';
+	document.getElementById("welcome_container").style.display = 'block';
+}
+
 // See https://github.com/Polymer/polymer/issues/1381
 window.addEventListener('WebComponentsReady', function() {
 	// Check to show welcome page
 	if (localStorage.elop_welcomed == "true") {
-		document.getElementById("paperDrawerPanel").style.display = 'inline';
-		document.getElementById("welcome_container").style.display = 'none';
+		app.welcomeHide();
 	} else {
-		document.getElementById("paperDrawerPanel").style.display = 'none';
-		document.getElementById("welcome_container").style.display = 'inline';
+		app.welcomeShow();
 	}
 });
 

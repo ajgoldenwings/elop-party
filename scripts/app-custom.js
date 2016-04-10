@@ -126,16 +126,6 @@ var appCustomJS = true;
 		app.event_current_timeto = 'loading...';
 	}
 
-	app.welcomeHide = function() {
-		document.getElementById("paperDrawerPanel").style.display = 'inline';
-		document.getElementById("welcome_container").style.display = 'none';
-	}
-
-	app.welcomeShow = function() {
-		document.getElementById("paperDrawerPanel").style.display = 'none';
-		document.getElementById("welcome_container").style.display = 'inline';
-	}
-
 	app.helper_map.show_map();
 
 /*if ('serviceWorker' in navigator) {navigator.serviceWorker.register('../bower_components/cache-polyfill-master/index.js').then(function(registration) {}).catch(function(err) {console.log('ServiceWorker registration failed: ', err);});}const OFFLINE_CACHE = 'offline';const OFFLINE_URL = '../index.html';self.addEventListener('install', function(event) {const offlineRequest = new Request(OFFLINE_URL);event.waitUntil(fetch(offlineRequest).then(function(response) {return caches.open(OFFLINE_CACHE).then(function(cache) {return cache.put(offlineRequest, response);});}));});self.addEventListener('fetch', function(event) {if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {console.log('Handling fetch event for', event.request.url);event.respondWith(fetch(event.request).catch(function(e) {console.error('Fetch failed; returning offline page instead.', e);return caches.open(OFFLINE_CACHE).then(function(cache) {return cache.match(OFFLINE_URL);});}));}});*/
