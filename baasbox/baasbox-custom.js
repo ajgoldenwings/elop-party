@@ -1,4 +1,5 @@
-BaasBox.setEndPoint("http://ec2-52-8-252-81.us-west-1.compute.amazonaws.com:9000");
+BaasBox.setEndPoint("https://baasbox.elopparty.com");
+
 BaasBox.appcode = "1234567890";
 
 $("#login").click(function() {
