@@ -5,12 +5,20 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-import AccountCircle from 'material-ui-icons/AccountCircle';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Theme from '../Theme';
+
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
+  // appBar: {
+  //   backgroundColor: "white",
+  //   color: "#202020",
+  // },
   flex: {
     flex: 1,
   },
@@ -18,27 +26,29 @@ const styles = theme => ({
 
 const Navigation = ({ authUser, classes }) => {
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="title" color="inherit" className={classes.flex}>
-            Elop Party
-          </Typography>
-          {authUser && (
-            <div>
-              <IconButton
-                aria-owns={false ? 'menu-appbar' : null}
-                aria-haspopup="true"
-                onClick={this.handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-    </div>
+    <MuiThemeProvider theme={Theme}>
+      <div className={classes.root}>
+        <AppBar position="static" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="title" color="inherit" className={classes.flex}>
+              Elop Party
+            </Typography>
+            {authUser && (
+              <div>
+                <IconButton
+                  aria-owns={false ? 'menu-appbar' : null}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                  <MoreVertIcon />
+                </IconButton>
+              </div>
+            )}
+          </Toolbar>
+        </AppBar>
+      </div>
+    </MuiThemeProvider>
   );
 };
 
@@ -49,7 +59,29 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(withStyles(styles)(Navigation));
 
 
-// import React from 'react';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import PropTypes from 'prop-types';
 // import { withStyles } from 'material-ui/styles';
 // import Switch from 'material-ui/Switch';
