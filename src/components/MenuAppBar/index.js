@@ -10,17 +10,22 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Theme from '../Theme';
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  // appBar: {
-  //   backgroundColor: "white",
-  //   color: "#202020",
-  // },
-  flex: {
+  appBar: {
+    position: 'fixed',
+    top: 0,
+    boxShadow: "none",
+    //'&([shadow])::after': {opacity: 1,},
+  },
+  title: {
     flex: 1,
+    textAlign: "center",
+    fontSize: 27,
+    fontWeight: 600,
+    letterSpacing: 2.7,
   },
 });
 
@@ -28,22 +33,23 @@ const Navigation = ({ authUser, classes }) => {
   return (
     <MuiThemeProvider theme={Theme}>
       <div className={classes.root}>
-        <AppBar position="static" className={classes.appBar}>
+        <AppBar
+          position="static"
+          className={classes.appBar}
+        >
           <Toolbar>
-            <Typography variant="title" color="inherit" className={classes.flex}>
+            <Typography variant="title" color="inherit" className={classes.title}>
               Elop Party
             </Typography>
             {authUser && (
-              <div>
-                <IconButton
-                  aria-owns={false ? 'menu-appbar' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <MoreVertIcon />
-                </IconButton>
-              </div>
+              <IconButton
+                aria-owns={false ? 'menu-appbar' : null}
+                aria-haspopup="true"
+                onClick={this.handleMenu}
+                color="inherit"
+              >
+                <MoreVertIcon />
+              </IconButton>
             )}
           </Toolbar>
         </AppBar>

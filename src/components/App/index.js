@@ -20,7 +20,7 @@ import './index.css';
 const App = () =>
   <Router>
     <div className="app">
-      <MenuAppBar />
+      <MenuAppBar title="Reddit PWA" />
 
       <Navigation />
 

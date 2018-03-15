@@ -8,7 +8,7 @@ export default createMuiTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: "#ffffff",
+      main: "#fff",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contast with palette.primary.main
     },
@@ -29,6 +29,16 @@ export default createMuiTheme({
     // disabledColor: "#bdbdbd",
     // pickerHeaderColor: "#1a237e",
     // clockCircleColor: "#ffffff"
+  },
+  card: {
+    primary: {
+      // light: will be calculated from palette.primary.main,
+      main: "#111",
+      titleColor: "#111",
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contast with palette.primary.main
+    },
+    titleColor: "rgba(33, 33, 33, 0.87)"
   },
 });
 
@@ -54,9 +64,6 @@ export default createMuiTheme({
   // },
   // floatingActionButton: {
   //     secondaryIconColor: "#ffffff"
-  // },
-  // card: {
-  //     titleColor: "rgba(33, 33, 33, 0.87)"
   // },
   // chip: {
   //     backgroundColor: "rgba(158, 158, 158, 0.5)"
