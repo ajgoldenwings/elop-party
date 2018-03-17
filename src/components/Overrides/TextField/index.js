@@ -13,9 +13,6 @@ const styles = {
     margin: '0 20px 20px 0',
     backgroundColor: 'white',
   },
-  input: {
-    textTransform: 'uppercase',
-  },
 };
 
 function Classes(props) {
@@ -24,7 +21,6 @@ function Classes(props) {
       autoComplete={props.autoComplete ? props.autoComplete : ""}
       classes={{
         root: props.classes.root, // className, e.g. `Classes-root-X`
-        input: props.classes.input,
       }}
       className={props.className ? props.className : ""}
       id={props.id ? props.id : ""}

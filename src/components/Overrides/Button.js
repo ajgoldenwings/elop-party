@@ -74,7 +74,7 @@ function Classes(props) {
       component={props.component ? props.component : null}
       disabled={props.disabled ? props.disabled : false}
       to={props.to ? props.to : ''}
-      type={props.type ? props.type : false}
+      type={props.type ? props.type : ''}
     >
       {props.children ? props.children : ''}
     </Button>
@@ -84,7 +84,7 @@ function Classes(props) {
 Classes.propTypes = {
   children:  PropTypes.node,
   classes:   PropTypes.object.isRequired,
-  component: PropTypes.component,
+  component: PropTypes.func,
   disabled:  PropTypes.bool,
   to:        PropTypes.string,
   type:      PropTypes.string,
