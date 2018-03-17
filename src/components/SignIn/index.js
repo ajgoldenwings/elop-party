@@ -112,33 +112,33 @@ class SignInForm extends Component {
           <h2>Sign In</h2>
 
           <Grid container className={styles.grid} spacing={40}>
-            <Hidden only={['xs']}>
-              <Grid item xs={5} className="center">
-                <TextField
-                  autoComplete="current-username"
-                  className="textField"
-                  id="name"
-                  label="Email Address"
-                  onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-                  margin="normal"
-                  value={email}
+            <Grid item xs={12} sm={5} className="center">
+              <TextField
+                autoComplete="current-username"
+                className="textField"
+                id="name"
+                label="Email Address"
+                onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+                margin="normal"
+                value={email}
+              />
+              <TextField
+                autoComplete="current-password"
+                className="textField"
+                id="password-input"
+                label="Password"
+                onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
+                type="password"
+                margin="normal"
+                value={password}
                 />
-                <TextField
-                  autoComplete="current-password"
-                  className="textField"
-                  id="password-input"
-                  label="Password"
-                  onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-                  type="password"
-                  margin="normal"
-                  value={password}
-                  />
-                <Button disabled={isInvalid} type="submit">
-                  Sign In
-                </Button>
+              <Button disabled={isInvalid} type="submit">
+                Sign In
+              </Button>
 
-                {error && <p>{error.message}</p>}
-              </Grid>
+              {error && <p>{error.message}</p>}
+            </Grid>
+            <Hidden only={['xs']}>
               <Grid item xs={1}>
               </Grid>
               <Grid item xs={6}>
