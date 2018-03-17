@@ -7,6 +7,8 @@ import {
 import { auth, db } from '../../firebase';
 import * as routes from '../../constants/routes';
 
+import Button from '../Overrides/Button';
+
 const SignUpPage = ({ history }) =>
   <div>
     <h1>SignUp</h1>
@@ -115,6 +117,15 @@ class SignUpForm extends Component {
   }
 }
 
+const SignUpButton = () =>
+  <Button
+    size="small"
+    color="primary"
+    component={Link}
+    to={routes.SIGN_UP}>
+    Go Sign Up
+  </Button>
+
 const SignUpLink = () =>
   <p>
     Don't have an account?
@@ -126,5 +137,6 @@ export default withRouter(SignUpPage);
 
 export {
   SignUpForm,
+  SignUpButton,
   SignUpLink,
 };

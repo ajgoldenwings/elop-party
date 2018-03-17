@@ -71,7 +71,9 @@ function Classes(props) {
         root: props.classes.root, // className, e.g. `Classes-root-X`
         label: props.classes.label, // className, e.g. `Classes-label-X`
       }}
+      component={props.component ? props.component : null}
       disabled={props.disabled ? props.disabled : false}
+      to={props.to ? props.to : ''}
       type={props.type ? props.type : false}
     >
       {props.children ? props.children : ''}
@@ -80,10 +82,12 @@ function Classes(props) {
 }
 
 Classes.propTypes = {
-  children: PropTypes.node,
-  classes:  PropTypes.object.isRequired,
-  disabled: PropTypes.bool,
-  type:     PropTypes.string,
+  children:  PropTypes.node,
+  classes:   PropTypes.object.isRequired,
+  component: PropTypes.component,
+  disabled:  PropTypes.bool,
+  to:        PropTypes.string,
+  type:      PropTypes.string,
 };
 
 export default withStyles(styles)(Classes);

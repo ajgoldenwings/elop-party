@@ -11,10 +11,11 @@ import Button      from '../Overrides/Button';
 import CardActions from '../Overrides/CardActions';
 import CardContent from '../Overrides/CardContent';
 import CardHeader  from '../Overrides/CardHeader';
-import TextField   from '../Overrides/TextField';
+import TextField   from '../Overrides/TextField/';
 
-import { PasswordForgetLink } from '../PasswordForget';
-import { SignUpLink }         from '../SignUp';
+import { PasswordForgetLink }       from '../PasswordForget';
+import { SignUpLink, SignUpButton } from '../SignUp';
+
 import './index.css';
 import Theme                  from '../Theme';
 
@@ -149,9 +150,7 @@ class SignInForm extends Component {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      Go Sign Up
-                    </Button>
+                    <SignUpButton />
                   </CardActions>
                 </Card>
               </Grid>

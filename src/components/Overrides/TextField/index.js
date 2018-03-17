@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 
+import './index.css';
+
 const styles = {
   root: {
     position: 'relative',
     width: '100%',
     margin: '0 20px 20px 0',
+    backgroundColor: 'white',
   },
-  label: {
-    textTransform: 'capitalize',
+  input: {
+    textTransform: 'uppercase',
   },
 };
 
@@ -21,13 +24,14 @@ function Classes(props) {
       autoComplete={props.autoComplete ? props.autoComplete : ""}
       classes={{
         root: props.classes.root, // className, e.g. `Classes-root-X`
+        input: props.classes.input,
       }}
       className={props.className ? props.className : ""}
       id={props.id ? props.id : ""}
       label={props.label ? props.label : ""}
       margin={props.margin ? props.margin : "normal"}
       onChange={props.onChange  ? props.onChange : null}
-      type={props.type ? props.type : ""}
+      type={props.type ? props.type : "string"}
       value={props.value ? props.value : ""}
     >
       {props.children ? props.children : 'classes'}
