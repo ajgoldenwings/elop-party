@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { withRouter }       from 'react-router-dom';
+import React, { Component }       from 'react';
+import { withRouter }             from 'react-router-dom';
 
 import Hidden           from 'material-ui/Hidden';
 import Paper            from 'material-ui/Paper';
@@ -12,9 +12,11 @@ import Button      from '../Overrides/Button';
 import CardActions from '../Overrides/CardActions';
 import CardContent from '../Overrides/CardContent';
 import CardHeader  from '../Overrides/CardHeader';
+import TextField   from '../Overrides/TextField';
 
 import { PasswordForgetLink } from '../PasswordForget';
 import { SignUpLink }         from '../SignUp';
+import './index.css';
 import Theme                  from '../Theme';
 
 import * as routes from '../../constants/routes';
@@ -23,7 +25,6 @@ import { auth } from '../../firebase';
 
 const SignInPage = ({ history }) =>
   <div>
-    <h1>SignIn</h1>
     <SignInForm history={history} />
     <PasswordForgetLink />
     <SignUpLink />
@@ -106,74 +107,67 @@ class SignInForm extends Component {
 
     return (
       <MuiThemeProvider theme={Theme}>
-        <h2>Sign In</h2>
 
-        <div className={styles.root}>
-          <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <Paper className={styles.paper}>toolbar</Paper>
-            </Grid>
+        <form onSubmit={this.onSubmit} className="authenticationContainer">
+          <h2>Sign In</h2>
+
+          <Grid container className={styles.grid} spacing={40}>
             <Hidden only={['xs']}>
-            <Grid item xs={6}>
-              <Paper className={styles.paper}>Go large</Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={styles.paper}>Back large</Paper>
-            </Grid>
-            </Hidden>
-            <Hidden smUp>
-            <Grid item xs={12}>
-              <Paper className={styles.paper}>Go</Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={styles.paper}>Back</Paper>
-            </Grid>
+              <Grid item xs={5} className="center">
+                <TextField
+                  id="name"
+                  label="Email Address"
+                  className="textField"
+                  value={email}
+                  onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+                  autoComplete="current-username"
+                  margin="normal"
+                />
+                <TextField
+                  id="password-input"
+                  label="Password"
+                  className="textField"
+                  value={password}
+                  onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
+                  type="password"
+                  autoComplete="current-password"
+                  margin="normal"
+                  />
+                <Button disabled={isInvalid} type="submit">
+                  Sign In
+                </Button>
+
+                {error && <p>{error.message}</p>}
+              </Grid>
+              <Grid item xs={1}>
+              </Grid>
+              <Grid item xs={6}>
+                <Card className={styles.card}>
+                  <CardHeader title="Don't have an accout?" />
+                  <CardContent>
+                    <Typography component="p">
+                      Go create you account here.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      Go Sign Up
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
             </Hidden>
           </Grid>
-        </div>
 
-        <form onSubmit={this.onSubmit}>
-
-          <Grid container className={styles.root}>
+          <Grid container spacing={12} className={styles.grid}>
+            <Hidden smUp>
             <Grid item xs={12}>
-              <Grid container justify="center" spacing={40}>
-                <Grid item>
-                  <input
-                    value={email}
-                    onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-                    type="text"
-                    placeholder="Email Address"
-                  />
-                  <input
-                    value={password}
-                    onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-                    type="password"
-                    placeholder="Password"
-                  />
-
-                  <button disabled={isInvalid} type="submit">
-                    Sign In
-                  </button>
-
-                  {error && <p>{error.message}</p>}
-                </Grid>
-                <Grid item>
-                  <Card className={styles.card}>
-                    <CardHeader title="Do not have an accout?" />
-                    <CardContent>
-                      <Typography component="p">
-                        Go create you account here.
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small" color="primary">
-                        Go Sign Up
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              </Grid>
+              <Paper className={styles.paper}>Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go </Paper>
             </Grid>
+            <Grid item xs={12}>
+              <Paper className={styles.paper}>Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back </Paper>
+            </Grid>
+            </Hidden>
           </Grid>
         </form>
       </MuiThemeProvider>

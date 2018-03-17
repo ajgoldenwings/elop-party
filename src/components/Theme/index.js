@@ -40,6 +40,12 @@ export default createMuiTheme({
     },
     titleColor: "rgba(33, 33, 33, 0.87)"
   },
+  // textField: {
+  //   primary: {
+  //     focusColor: "#424242",
+  //     errorColor: "#b71c1c"
+  //   }
+  // },
 });
 
 
