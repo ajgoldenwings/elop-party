@@ -18,15 +18,17 @@ const styles = {
 function Classes(props) {
   return (
     <TextField
-      id={props.id ? props.id : ""}
-      className={props.className ? props.className : ""}
+      autoComplete={props.autoComplete ? props.autoComplete : ""}
       classes={{
         root: props.classes.root, // className, e.g. `Classes-root-X`
-        label: props.classes.label, // className, e.g. `Classes-label-X`
       }}
+      className={props.className ? props.className : ""}
+      id={props.id ? props.id : ""}
       label={props.label ? props.label : ""}
-      autoComplete={props.autoComplete ? props.autoComplete : ""}
       margin={props.margin ? props.margin : "normal"}
+      onChange={props.onChange  ? props.onChange : null}
+      type={props.type ? props.type : ""}
+      value={props.value ? props.value : ""}
     >
       {props.children ? props.children : 'classes'}
     </TextField>
@@ -34,8 +36,15 @@ function Classes(props) {
 }
 
 Classes.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
+  autoComplete: PropTypes.string,
+  children:     PropTypes.node,
+  classes:      PropTypes.object.isRequired,
+  className:    PropTypes.string,
+  id:           PropTypes.string,
+  label:        PropTypes.string,
+  value:        PropTypes.string,
+  onChange:     PropTypes.func,
+  type:         PropTypes.string,
 };
 
 export default withStyles(styles)(Classes);

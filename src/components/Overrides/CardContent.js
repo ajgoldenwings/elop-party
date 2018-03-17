@@ -8,9 +8,6 @@ const styles = {
     padding: 16,
     position: 'relative',
   },
-  label: {
-    textTransform: 'capitalize',
-  },
 };
 
 function Classes(props) {
@@ -18,10 +15,9 @@ function Classes(props) {
     <CardContent
       classes={{
         root: props.classes.root, // className, e.g. `Classes-root-X`
-        label: props.classes.label, // className, e.g. `Classes-label-X`
       }}
     >
-      {props.children ? props.children : 'classes'}
+      {props.children ? props.children : ''}
     </CardContent>
   );
 }

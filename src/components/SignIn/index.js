@@ -2,7 +2,6 @@ import React, { Component }       from 'react';
 import { withRouter }             from 'react-router-dom';
 
 import Hidden           from 'material-ui/Hidden';
-import Paper            from 'material-ui/Paper';
 import Typography       from 'material-ui/Typography';
 import Card             from 'material-ui/Card';
 import Grid             from 'material-ui/Grid';
@@ -115,23 +114,23 @@ class SignInForm extends Component {
             <Hidden only={['xs']}>
               <Grid item xs={5} className="center">
                 <TextField
+                  autoComplete="current-username"
+                  className="textField"
                   id="name"
                   label="Email Address"
-                  className="textField"
-                  value={email}
                   onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-                  autoComplete="current-username"
                   margin="normal"
+                  value={email}
                 />
                 <TextField
+                  autoComplete="current-password"
+                  className="textField"
                   id="password-input"
                   label="Password"
-                  className="textField"
-                  value={password}
                   onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
                   type="password"
-                  autoComplete="current-password"
                   margin="normal"
+                  value={password}
                   />
                 <Button disabled={isInvalid} type="submit">
                   Sign In
@@ -159,7 +158,7 @@ class SignInForm extends Component {
             </Hidden>
           </Grid>
 
-          <Grid container spacing={12} className={styles.grid}>
+          {/* <Grid container spacing={16} className={styles.grid}>
             <Hidden smUp>
             <Grid item xs={12}>
               <Paper className={styles.paper}>Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go </Paper>
@@ -168,7 +167,7 @@ class SignInForm extends Component {
               <Paper className={styles.paper}>Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back </Paper>
             </Grid>
             </Hidden>
-          </Grid>
+          </Grid> */}
         </form>
       </MuiThemeProvider>
     );

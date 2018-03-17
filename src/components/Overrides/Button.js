@@ -26,9 +26,12 @@ const styles = {
       backgroundColor: '#000',
       color: '#FFF',
     },
+    // '& > *': {
+    //   textTransform: 'uppercase',
+    // },
   },
   label: {
-    textTransform: 'capitalize',
+    textTransform: 'uppercase',
   },
 
   // @media (max-width: 767px) {
@@ -68,15 +71,19 @@ function Classes(props) {
         root: props.classes.root, // className, e.g. `Classes-root-X`
         label: props.classes.label, // className, e.g. `Classes-label-X`
       }}
+      disabled={props.disabled ? props.disabled : false}
+      type={props.type ? props.type : false}
     >
-      {props.children ? props.children : 'classes'}
+      {props.children ? props.children : ''}
     </Button>
   )
 }
 
 Classes.propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
+  classes:  PropTypes.object.isRequired,
+  disabled: PropTypes.bool,
+  type:     PropTypes.string,
 };
 
 export default withStyles(styles)(Classes);

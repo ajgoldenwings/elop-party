@@ -12,9 +12,6 @@ const styles = {
     padding: '10px 20px',
     textAlign: 'center',
   },
-  label: {
-    textTransform: 'capitalize',
-  },
 };
 
 function Classes(props) {
@@ -22,10 +19,9 @@ function Classes(props) {
     <CardActions
       classes={{
         root: props.classes.root, // className, e.g. `Classes-root-X`
-        label: props.classes.label, // className, e.g. `Classes-label-X`
       }}
     >
-      {props.children ? props.children : 'classes'}
+      {props.children ? props.children : ''}
     </CardActions>
   );
 }

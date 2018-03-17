@@ -9,9 +9,6 @@ const styles = {
     fontSize: 24,
     fontWeight: 400,
   },
-  label: {
-    textTransform: 'capitalize',
-  },
 };
 
 function Classes(props) {
@@ -20,21 +17,18 @@ function Classes(props) {
       <CardHeader
         classes={{
           root: props.classes.root, // className, e.g. `Classes-root-X`
-          label: props.classes.label, // className, e.g. `Classes-label-X`
         }}
         title={props.title}
         subheader={props.subheader}
       />
-      {props.children && props.children}
     </div>
   );
 }
 
 Classes.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-  title: PropTypes.object.isRequired,
+  classes:   PropTypes.object.isRequired,
   subheader: PropTypes.object,
+  title:     PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Classes);
