@@ -19,6 +19,7 @@
   * Password Change
   * Protected Routes with Authorization
   * Database: Users
+  * Material-UI
 
 ## Installation
 

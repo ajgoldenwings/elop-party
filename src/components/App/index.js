@@ -3,21 +3,25 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import MenuAppBar from '../MenuAppBar';
-import Navigation from '../Navigation';
-import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
-import SignInPage from '../SignIn';
+import AccountPage from        '../Account';
+import HomePage from           '../Home';
+import LandingPage from        '../Landing';
+import MenuAppBar from         '../MenuAppBar';
+import Navigation from         '../Navigation';
 import PasswordForgetPage from '../PasswordForget';
-import HomePage from '../Home';
-import AccountPage from '../Account';
+import RootPath from           '../RootPath';
+import SignUpPage from         '../SignUp';
+import SignInPage from         '../SignIn';
+
 import withAuthentication from '../Session/withAuthentication';
+
 import * as routes from '../../constants/routes';
 
 import './index.css';
 
-const App = () =>
+const App = ({ authUser }) =>
   <Router>
     <div className="app">
       <MenuAppBar />
@@ -27,12 +31,18 @@ const App = () =>
       <hr/>
 
       <Route exact path={routes.LANDING} component={() => <LandingPage />} />
-      <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
       <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+      <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+      <RootPath />
       <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
       <Route exact path={routes.HOME} component={() => <HomePage />} />
       <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
     </div>
   </Router>
 
-export default withAuthentication(App);
+const mapStateToProps = (state) => ({
+  authUser: state.sessionState.authUser,
+});
+
+//export default withAuthentication(App);
+export default connect(mapStateToProps)(withAuthentication(App));

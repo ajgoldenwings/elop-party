@@ -15,13 +15,12 @@ import TextField   from '../Overrides/TextField/';
 
 import { PasswordForgetLink }       from '../PasswordForget';
 import { SignUpLink, SignUpButton } from '../SignUp';
+import Theme                        from '../Theme';
 
 import './index.css';
-import Theme                  from '../Theme';
 
 import * as routes from '../../constants/routes';
 import { auth } from '../../firebase';
-
 
 const SignInPage = ({ history }) =>
   <div>
