@@ -5,15 +5,17 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import AccountPage from        '../Account';
-import HomePage from           '../Home';
-import LandingPage from        '../Landing';
-import MenuAppBar from         '../MenuAppBar';
+import AccountPage from '../Account';
+import HomePage    from '../Home';
+import LandingPage from '../Landing';
+import MenuAppBar  from '../MenuAppBar';
 //import Navigation from         '../Navigation';
 //import PasswordForgetPage from '../PasswordForget';
-import RootPath from           '../RootPath';
-import SignUpPage from         '../SignUp';
-import SignInPage from         '../SignIn';
+import RootPath    from '../RootPath';
+import Settings    from '../Settings';
+import SignUpPage  from '../SignUp';
+import SignInPage  from '../SignIn';
+import Terms       from '../Terms';
 
 import withAuthentication from '../Session/withAuthentication';
 
@@ -29,13 +31,15 @@ const App = ({ authUser, noAuth }) =>
       {/* <Navigation />
 
       <hr/> */}
-      <Route exact path={routes.LANDING} component={() => <LandingPage />} />
-      <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
-      <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+      <Route exact path={routes.LANDING}  component={() => <LandingPage />} />
+      <Route exact path={routes.SETTINGS} component={() => <Settings />} />
+      <Route exact path={routes.SIGN_IN}  component={() => <SignInPage />} />
+      <Route exact path={routes.SIGN_UP}  component={() => <SignUpPage />} />
+      <Route exact path={routes.TERMS}    component={() => <Terms />} />
       <RootPath />
       {/* <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} /> */}
-      <Route exact path={routes.HOME} component={() => <HomePage />} />
-      <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+      <Route exact path={routes.HOME}     component={() => <HomePage />} />
+      <Route exact path={routes.ACCOUNT}  component={() => <AccountPage />} />
     </div>
   </Router>
 

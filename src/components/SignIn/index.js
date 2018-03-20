@@ -11,14 +11,14 @@ import Button      from '../Overrides/Button';
 import CardActions from '../Overrides/CardActions';
 import CardContent from '../Overrides/CardContent';
 import CardHeader  from '../Overrides/CardHeader';
-import TextField   from '../Overrides/TextField/';
+import TextField   from '../Overrides/TextField';
 
 // import { PasswordForgetLink }       from '../PasswordForget';
 import {
   // SignUpLink,
   SignUpButton,
 } from '../SignUp';
-import Theme                        from '../Theme';
+import Theme from '../Theme';
 
 import './index.css';
 

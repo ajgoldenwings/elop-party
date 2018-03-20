@@ -1,0 +1,93 @@
+.center {
+  text-align: center;
+}
+
+.grid {
+  margin-top: 40px;
+  /* @apply(--layout-horizontal); */
+    /* @apply(--layout); */
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.grid > section {
+  /* @apply(--layout-flex); */
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+  margin-bottom: 80px;
+}
+
+.grid > section:not(:first-child) {
+  margin-left: 80px;
+}
+
+.row {
+  /* @apply(--layout-horizontal); */
+    /* @apply(--layout); */
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  /* @apply(--layout-end); */
+    -ms-flex-align: end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+
+.column {
+  /* @apply(--layout-vertical); */
+    /* @apply(--layout); */
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.row > .flex,
+.input-row > * {
+  /* @apply(--layout-flex); */
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+}
+
+.input-row > *:not(:first-child) {
+  margin-left: 8px;
+}
+
+@media (max-width: 767px) {
+  div.responsive-show {
+    display: inline;
+  }
+
+  section.responsive-hidden {
+    padding-left: 10000px;
+    position: fixed;
+  }
+
+  .grid {
+    display: block;
+    margin-top: 0;
+  }
+
+  .grid > section {
+    margin-bottom: 0px;
+  }
+
+  .grid > section:not(:first-child) {
+    margin-left: 0;
+  }
+}

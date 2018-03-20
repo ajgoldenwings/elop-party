@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import Button         from 'material-ui/Button';
+
+import './index.css';
 
 const styles = {
   root: {
@@ -23,6 +26,10 @@ const styles = {
       backgroundColor: '#c5cad3',
     },
     '&:active': {
+      backgroundColor: '#000',
+      color: '#FFF',
+    },
+    '&:responsive': {
       backgroundColor: '#000',
       color: '#FFF',
     },

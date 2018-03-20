@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import Card             from 'material-ui/Card';
-import Hidden           from 'material-ui/Hidden';
 import Typography       from 'material-ui/Typography';
-import Grid             from 'material-ui/Grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { SignInButton } from '../SignIn';
-import Theme            from '../Theme';
+import { SignInButton }   from '../SignIn';
+import { TermsAgreement } from '../Terms';
+import Theme              from '../Theme';
 
 import { auth, db } from '../../firebase';
 import * as routes from  '../../constants/routes';
 
-import Button from '../Overrides/Button';
+import Button      from '../Overrides/Button';
 import CardActions from '../Overrides/CardActions';
 import CardContent from '../Overrides/CardContent';
 import CardHeader  from '../Overrides/CardHeader';
-import TextField   from '../Overrides/TextField/';
+import TextField   from '../Overrides/TextField';
+
+import '../Styles/Form.css';
 
 const SignUpPage = ({ history }) =>
   <div>
@@ -110,45 +111,59 @@ class SignUpForm extends Component {
       <MuiThemeProvider theme={Theme}>
         <form onSubmit={this.onSubmit} className="authenticationContainer">
           <h2>Sign Up</h2>
+          <div className="subsection grid">
+            <section>
+              <div className="row input-row">
+                <TextField
+                  className="textField"
+                  id="name"
+                  label="Email Address"
+                  onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+                  margin="normal"
+                  value={email}
+                />
+              </div>
 
-          <Grid container className={styles.grid} spacing={40}>
-            <Grid item xs={12} sm={5} className="center">
-              <TextField
-                className="textField"
-                id="name"
-                label="Email Address"
-                onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-                margin="normal"
-                value={email}
-              />
-              <TextField
-                className="textField"
-                id="passwordOne-input"
-                label="Password"
-                onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
-                type="password"
-                margin="normal"
-                value={passwordOne}
-              />
-              <TextField
-                className="textField"
-                id="passwordTwo-input"
-                label="Confirm Password"
-                onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
-                type="password"
-                margin="normal"
-                value={passwordTwo}
-              />
-              <Button disabled={isInvalid} type="submit">
-                Sign Up
-              </Button>
+              <div className="row input-row">
+                <TextField
+                  className="textField"
+                  id="passwordOne-input"
+                  label="Password"
+                  onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
+                  type="password"
+                  margin="normal"
+                  value={passwordOne}
+                />
+              </div>
 
-              { error && <p>{error.message}</p> }
-            </Grid>
-            <Hidden only={['xs']}>
-              <Grid item xs={1}>
-              </Grid>
-              <Grid item xs={6}>
+              <div className="row input-row">
+                <TextField
+                  className="textField"
+                  id="passwordTwo-input"
+                  label="Confirm Password"
+                  onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
+                  type="password"
+                  margin="normal"
+                  value={passwordTwo}
+                />
+              </div>
+
+              <div className="center input-row">
+                <TermsAgreement/>
+              </div>
+
+              <div className="row input-row">
+                <Button disabled={isInvalid} type="submit">
+                  Sign Up
+                </Button>
+              </div>
+
+              <div className="row input-row">
+                { error && <p>{error.message}</p> }
+              </div>
+            </section>
+            <section className="responsive-hidden">
+              <div className="row input-row">
                 <Card className={styles.card}>
                   <CardHeader title="Already have a accout?" />
                   <CardContent>
@@ -160,9 +175,9 @@ class SignUpForm extends Component {
                     <SignInButton />
                   </CardActions>
                 </Card>
-              </Grid>
-            </Hidden>
-          </Grid>
+              </div>
+            </section>
+          </div>
         </form>
       </MuiThemeProvider>
     );

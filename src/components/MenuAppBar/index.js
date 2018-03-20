@@ -1,14 +1,18 @@
-import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import React       from 'react';
 import { connect } from 'react-redux';
+import { Link }    from 'react-router-dom';
+
 import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Theme from '../Theme';
+
+import * as routes from '../../constants/routes';
 
 const styles = theme => ({
   root: {
@@ -47,6 +51,8 @@ const Navigation = ({ authUser, classes }) => {
                 aria-haspopup="true"
                 onClick={this.handleMenu}
                 color="inherit"
+                component={Link}
+                to={routes.SETTINGS}
               >
                 <MoreVertIcon />
               </IconButton>
@@ -103,11 +109,6 @@ export default connect(mapStateToProps)(withStyles(styles)(Navigation));
 //   handleChange = (event, checked) => {
 //     this.setState({ auth: checked });
 //   };
-
-//   handleMenu = event => {
-//     this.setState({ anchorEl: event.currentTarget });
-//   };
-
 //   handleClose = () => {
 //     this.setState({ anchorEl: null });
 //   };
