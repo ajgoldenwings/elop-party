@@ -1,5 +1,5 @@
 import React, { Component }       from 'react';
-import { withRouter }             from 'react-router-dom';
+import { Link, withRouter }             from 'react-router-dom';
 
 import Hidden           from 'material-ui/Hidden';
 import Typography       from 'material-ui/Typography';
@@ -13,20 +13,23 @@ import CardContent from '../Overrides/CardContent';
 import CardHeader  from '../Overrides/CardHeader';
 import TextField   from '../Overrides/TextField/';
 
-import { PasswordForgetLink }       from '../PasswordForget';
-import { SignUpLink, SignUpButton } from '../SignUp';
+// import { PasswordForgetLink }       from '../PasswordForget';
+import {
+  // SignUpLink,
+  SignUpButton,
+} from '../SignUp';
 import Theme                        from '../Theme';
 
 import './index.css';
 
+import { auth } from    '../../firebase';
 import * as routes from '../../constants/routes';
-import { auth } from '../../firebase';
 
 const SignInPage = ({ history }) =>
   <div>
     <SignInForm history={history} />
-    <PasswordForgetLink />
-    <SignUpLink />
+    {/* <PasswordForgetLink />
+    <SignUpLink /> */}
   </div>
 
 const updateByPropertyName = (propertyName, value) => () => ({
@@ -73,23 +76,9 @@ class SignInForm extends Component {
       card: {
         minWidth: 275,
       },
-      bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-      },
       title: {
         marginBottom: 16,
         fontSize: 14,
-        color: theme.palette.text.secondary,
-      },
-      paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      },
-      pos: {
-        marginBottom: 12,
         color: theme.palette.text.secondary,
       },
     });
@@ -172,8 +161,18 @@ class SignInForm extends Component {
   }
 }
 
+const SignInButton = () =>
+  <Button
+    size="small"
+    color="primary"
+    component={Link}
+    to={routes.SIGN_IN}>
+    Go Sign In
+  </Button>
+
 export default withRouter(SignInPage);
 
 export {
   SignInForm,
+  SignInButton,
 };

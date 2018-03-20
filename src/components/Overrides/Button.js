@@ -30,9 +30,15 @@ const styles = {
     //   textTransform: 'uppercase',
     // },
   },
+  '(:responsive)': {
+    display: 'none',
+  },
   label: {
     textTransform: 'uppercase',
   },
+
+  // 'root [responsive]': {
+  // }
 
   // @media (max-width: 767px) {
 
@@ -75,6 +81,7 @@ function Classes(props) {
       disabled={props.disabled ? props.disabled : false}
       to={props.to ? props.to : ''}
       type={props.type ? props.type : ''}
+      responsive={props.responsive ? "true" : "false"}
     >
       {props.children ? props.children : ''}
     </Button>
@@ -82,12 +89,13 @@ function Classes(props) {
 }
 
 Classes.propTypes = {
-  children:  PropTypes.node,
-  classes:   PropTypes.object.isRequired,
-  component: PropTypes.func,
-  disabled:  PropTypes.bool,
-  to:        PropTypes.string,
-  type:      PropTypes.string,
+  children:   PropTypes.node,
+  classes:    PropTypes.object.isRequired,
+  component:  PropTypes.func,
+  disabled:   PropTypes.bool,
+  responsive: PropTypes.bool,
+  to:         PropTypes.string,
+  type:       PropTypes.string,
 };
 
 export default withStyles(styles)(Classes);
