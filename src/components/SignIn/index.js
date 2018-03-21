@@ -1,10 +1,8 @@
 import React, { Component }       from 'react';
 import { Link, withRouter }             from 'react-router-dom';
 
-import Hidden           from 'material-ui/Hidden';
 import Typography       from 'material-ui/Typography';
 import Card             from 'material-ui/Card';
-import Grid             from 'material-ui/Grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Button      from '../Overrides/Button';
@@ -95,41 +93,48 @@ class SignInForm extends Component {
 
     return (
       <MuiThemeProvider theme={Theme}>
-
         <form onSubmit={this.onSubmit} className="authenticationContainer">
           <h2>Sign In</h2>
 
-          <Grid container className={styles.grid} spacing={40}>
-            <Grid item xs={12} sm={5} className="center">
-              <TextField
-                autoComplete="current-username"
-                className="textField"
-                id="name"
-                label="Email Address"
-                onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-                margin="normal"
-                value={email}
-              />
-              <TextField
-                autoComplete="current-password"
-                className="textField"
-                id="password-input"
-                label="Password"
-                onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-                type="password"
-                margin="normal"
-                value={password}
+          <div className="subsection grid">
+            <section>
+              <div className="row input-row">
+                <TextField
+                  autoComplete="current-username"
+                  className="textField"
+                  id="name"
+                  label="Email Address"
+                  onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+                  margin="normal"
+                  value={email}
                 />
-              <Button disabled={isInvalid} type="submit">
-                Sign In
-              </Button>
+              </div>
 
-              {error && <p>{error.message}</p>}
-            </Grid>
-            <Hidden only={['xs']}>
-              <Grid item xs={1}>
-              </Grid>
-              <Grid item xs={6}>
+              <div className="row input-row">
+                <TextField
+                  autoComplete="current-password"
+                  className="textField"
+                  id="password-input"
+                  label="Password"
+                  onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
+                  type="password"
+                  margin="normal"
+                  value={password}
+                  />
+              </div>
+
+              <div className="center input-row">
+                <Button responsive responsive_1 disabled={isInvalid} type="submit">
+                  Sign In
+                </Button>
+              </div>
+
+              <div className="row input-row">
+                {error && <p>{error.message}</p>}
+              </div>
+            </section>
+            <section className="responsive-hidden">
+              <div className="row input-row">
                 <Card className={styles.card}>
                   <CardHeader title="Don't have an accout?" />
                   <CardContent>
@@ -141,20 +146,9 @@ class SignInForm extends Component {
                     <SignUpButton />
                   </CardActions>
                 </Card>
-              </Grid>
-            </Hidden>
-          </Grid>
-
-          {/* <Grid container spacing={16} className={styles.grid}>
-            <Hidden smUp>
-            <Grid item xs={12}>
-              <Paper className={styles.paper}>Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go Go </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={styles.paper}>Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back </Paper>
-            </Grid>
-            </Hidden>
-          </Grid> */}
+              </div>
+            </section>
+          </div>
         </form>
       </MuiThemeProvider>
     );
@@ -166,7 +160,9 @@ const SignInButton = () =>
     size="small"
     color="primary"
     component={Link}
-    to={routes.SIGN_IN}>
+    to={routes.SIGN_IN}
+    responsive
+  >
     Go Sign In
   </Button>
 

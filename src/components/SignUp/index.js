@@ -18,6 +18,7 @@ import CardContent from '../Overrides/CardContent';
 import CardHeader  from '../Overrides/CardHeader';
 import TextField   from '../Overrides/TextField';
 
+import '../Styles/Common.css';
 import '../Styles/Form.css';
 
 const SignUpPage = ({ history }) =>
@@ -111,6 +112,7 @@ class SignUpForm extends Component {
       <MuiThemeProvider theme={Theme}>
         <form onSubmit={this.onSubmit} className="authenticationContainer">
           <h2>Sign Up</h2>
+
           <div className="subsection grid">
             <section>
               <div className="row input-row">
@@ -148,12 +150,12 @@ class SignUpForm extends Component {
                 />
               </div>
 
-              <div className="center input-row">
+              <div className="row input-row responsive responsive_2">
                 <TermsAgreement/>
               </div>
 
-              <div className="row input-row">
-                <Button disabled={isInvalid} type="submit">
+              <div className="center input-row">
+                <Button responsive responsive_1 disabled={isInvalid} type="submit">
                   Sign Up
                 </Button>
               </div>

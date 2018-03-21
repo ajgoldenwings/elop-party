@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './index.css'
+
 const Terms = () =>
   <div>
     <h2>Terms</h2>
@@ -35,7 +37,7 @@ const Terms = () =>
   </div>
 
 const TermsAgreement = () =>
-  <small class="terms">By signing up, you agree to the <a href="/terms">Terms of Elop Party</a>.</small>
+  <small className="terms">By signing up, you agree to the <a href="/terms">Terms of Elop Party</a>.</small>
 
 export {
   TermsAgreement

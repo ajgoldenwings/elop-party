@@ -16,3 +16,26 @@ h4 {
   -webkit-margin-after: 0px;
   -webkit-margin-before: 0.5em;
 }
+
+@media (max-width: 767px) {
+  .responsive {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .responsive_2 {
+    padding: 20px;
+    bottom: 128px;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 767px) {
+  .responsive_2 {
+    bottom: 72px;
+    padding: 5px;
+    background: white;
+  }
+}

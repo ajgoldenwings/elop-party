@@ -1,7 +1,7 @@
-
 @media (max-width: 767px) {
-  a[role="button"] {
+  a[role="button"][responsive="true"], button[responsive="true"] {
     height: 64px;
+
     background-color: #172C50;
     border: none;
     color: white;
@@ -12,5 +12,24 @@
     bottom: 0;
     left: 0;
     z-index: 1;
+    padding: 20px;
+    width: 100%;
+  }
+
+  a[role="button"][responsive_1="true"], button[responsive_1="true"] {
+    bottom: 64px;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 767px) {
+  a[role="button"][responsive="true"], button[responsive="true"] {
+    height: 28px;
+    font-size: 0.9em;
+    padding: 5px;
+  }
+
+  a[role="button"][responsive_1="true"], button[responsive_1="true"] {
+    bottom: 36px;
+    padding: 5px;
   }
 }

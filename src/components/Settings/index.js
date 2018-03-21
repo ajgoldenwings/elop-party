@@ -10,7 +10,7 @@ const Settings = () =>
   <div>
     <h2>Settings</h2>
 
-    <h4 class="border-bottom">My Account</h4>
+    <h4 className="border-bottom">My Account</h4>
 
     <List>
       <ListItem button>
@@ -21,7 +21,7 @@ const Settings = () =>
       </ListItem>
     </List>
 
-    <h4 class="border-bottom">Information</h4>
+    <h4 className="border-bottom">Information</h4>
 
     <List>
       <ListItem button>
@@ -35,7 +35,7 @@ const Settings = () =>
       </ListItem>
     </List>
 
-    <h4 class="border-bottom">Account Actions</h4>
+    <h4 className="border-bottom">Account Actions</h4>
 
     <List>
       <ListItem button onClick={auth.doSignOut}>

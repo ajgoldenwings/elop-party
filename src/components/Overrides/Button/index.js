@@ -29,52 +29,10 @@ const styles = {
       backgroundColor: '#000',
       color: '#FFF',
     },
-    '&:responsive': {
-      backgroundColor: '#000',
-      color: '#FFF',
-    },
-    // '& > *': {
-    //   textTransform: 'uppercase',
-    // },
-  },
-  '(:responsive)': {
-    display: 'none',
   },
   label: {
     textTransform: 'uppercase',
   },
-
-  // 'root [responsive]': {
-  // }
-
-  // @media (max-width: 767px) {
-
-  //   ajp-button[responsive] {
-  //     height: 64px;
-  //   }
-
-  //   ajp-button[responsive] > * {
-  //     /*background-color: var(--app-accent-color);*/
-  //     background-color: #172C50;
-  //     border: none;
-  //     color: white;
-  //     font-size: 18px;
-  //   }
-
-  //   ajp-button[responsive] > *:focus {
-  //     /*background-color: var(--app-accent-color);*/
-  //   }
-  // }
-
-  // @media (max-height: 500px) and (max-width: 767px) {
-  //   ajp-button[responsive] {
-  //     height: 32px;
-  //   }
-
-  //   ajp-button[responsive] > * {
-  //     font-size: 0.9em;
-  //   }
-  // }
 }
 
 function Classes(props) {
@@ -89,6 +47,7 @@ function Classes(props) {
       to={props.to ? props.to : ''}
       type={props.type ? props.type : ''}
       responsive={props.responsive ? "true" : "false"}
+      responsive_1={props.responsive_1 ? "true" : "false"}
     >
       {props.children ? props.children : ''}
     </Button>
