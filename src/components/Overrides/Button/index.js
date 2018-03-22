@@ -21,7 +21,6 @@ const styles = {
     textTransform: 'uppercase',
     borderRadius: 0,
     outline: 'none',
-    //-webkit-appearance: none;
     '&:focus': {
       backgroundColor: '#c5cad3',
     },

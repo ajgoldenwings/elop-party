@@ -32,11 +32,8 @@ export default createMuiTheme({
   },
   card: {
     primary: {
-      // light: will be calculated from palette.primary.main,
       main: "#111",
       titleColor: "#111",
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contast with palette.primary.main
     },
     titleColor: "rgba(33, 33, 33, 0.87)"
   },

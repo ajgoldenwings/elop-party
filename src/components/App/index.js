@@ -5,6 +5,8 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import LinearProgress from '../Overrides/Progress';
+
 import AccountPage from '../Account';
 import HomePage    from '../Home';
 import LandingPage from '../Landing';
@@ -39,7 +41,13 @@ const App = ({ authUser, noAuth }) =>
       <RootPath />
       {/* <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} /> */}
       <Route exact path={routes.HOME}     component={() => <HomePage />} />
-      <Route exact path={routes.ACCOUNT}  component={() => <AccountPage />} />
+      <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+
+      <LinearProgress hidden />
+
+      {/* case 'progressHide': this.$.progress.setAttribute("hidden",true); break;
+          case 'progressShow': this.$.progress.removeAttribute("hidden");   break; */}
+      {/* <paper-progress name="progress" id="progress" hidden indeterminate></paper-progress> */}
     </div>
   </Router>
 

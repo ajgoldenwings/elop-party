@@ -2,3 +2,9 @@
 .terms {
   color:#606060;
 }
+
+@media (min-width: 767px) {
+  .terms {
+      margin: 0 0 20px 0;
+  }
+}

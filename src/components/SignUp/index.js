@@ -31,7 +31,6 @@ const updateByPropertyName = (propertyName, value) => () => ({
 });
 
 const INITIAL_STATE = {
-  username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -47,7 +46,6 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     const {
-      username,
       email,
       passwordOne,
     } = this.state;
@@ -60,7 +58,7 @@ class SignUpForm extends Component {
       .then(authUser => {
 
         // Create a user in your own accessible Firebase Database too
-        db.doCreateUser(authUser.uid, username, email)
+        db.doCreateUser(authUser.uid, email, email)
           .then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
             history.push(routes.HOME);
@@ -95,7 +93,6 @@ class SignUpForm extends Component {
     });
 
     const {
-      username,
       email,
       passwordOne,
       passwordTwo,
@@ -105,8 +102,7 @@ class SignUpForm extends Component {
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
-      username === '' ||
-      email === '';
+      email === ''
 
     return (
       <MuiThemeProvider theme={Theme}>
@@ -119,7 +115,7 @@ class SignUpForm extends Component {
                 <TextField
                   className="textField"
                   id="name"
-                  label="Email Address"
+                  label="Email"
                   onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
                   margin="normal"
                   value={email}
